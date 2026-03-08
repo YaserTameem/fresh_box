@@ -4,7 +4,7 @@ import 'package:fresh_box/core/constants/app_sizes.dart';
 import 'package:fresh_box/core/theme/app_text_style.dart';
 import 'package:fresh_box/core/theme/light_colors.dart';
 import 'package:fresh_box/core/widget/custom_app_bar.dart';
-import 'package:fresh_box/features/card/cart_screen.dart';
+import 'package:fresh_box/features/cart/cart_screen.dart';
 import 'package:fresh_box/features/home/components/sliver_home_grid.dart';
 import 'package:fresh_box/features/home/components/sliver_home_list.dart';
 

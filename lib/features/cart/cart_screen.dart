@@ -5,9 +5,9 @@ import 'package:fresh_box/core/constants/app_sizes.dart';
 import 'package:fresh_box/core/theme/app_text_style.dart';
 import 'package:fresh_box/core/theme/light_colors.dart';
 import 'package:fresh_box/core/widget/custom_app_bar.dart';
-import 'package:fresh_box/features/card/components/custom_list_tile.dart';
+import 'package:fresh_box/features/cart/components/cart_list_view.dart';
+import 'package:fresh_box/features/cart/components/custom_list_tile.dart';
 import 'package:fresh_box/features/home/home_screen.dart';
-import 'package:fresh_box/features/card/components/card_list_view.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
