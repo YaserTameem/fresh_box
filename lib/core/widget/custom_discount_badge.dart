@@ -1,0 +1,30 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fresh_box/core/constants/app_radius.dart';
+import 'package:fresh_box/core/constants/app_sizes.dart';
+import 'package:fresh_box/core/theme/app_text_style.dart';
+import 'package:fresh_box/core/theme/light_colors.dart';
+
+class CustomDiscountBadge extends StatelessWidget {
+  const CustomDiscountBadge({super.key, this.discount});
+
+  final int? discount;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.all(AppSizes.pw8),
+      height: AppSizes.h20,
+      width: AppSizes.w54,
+      decoration: BoxDecoration(color: LightColors.primaryColor, borderRadius: AppRadius.xs),
+      child: Row(
+        spacing: 3,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SvgPicture.asset('assets/images/discount_icon.svg'),
+          Text("-$discount", style: AppTextStyle.discountStyle),
+        ],
+      ),
+    );
+  }
+}
