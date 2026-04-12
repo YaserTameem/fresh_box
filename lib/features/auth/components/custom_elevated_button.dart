@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fresh_box/core/constants/app_sizes.dart';
+import 'package:fresh_box/core/theme/dark_colors.dart';
 import 'package:fresh_box/core/theme/light_colors.dart';
+import 'package:get/get.dart';
 
 class CustomElevatedButton extends StatelessWidget {
   const CustomElevatedButton({
@@ -30,13 +32,14 @@ class CustomElevatedButton extends StatelessWidget {
         label,
         style:
             isFacebook
-                ? TextStyle(
-                  fontFamily: 'Montserrat',
+                ? Theme.of(context).textTheme.headlineSmall?.copyWith(
+                  color: Get.isDarkMode ? DarkColors.buttonTextColor : LightColors.buttonTextColor,
                   fontWeight: FontWeight.w300,
-                  fontSize: AppSizes.sp15,
-                  color: LightColors.buttonTextColor,
                 )
-                : Theme.of(context).textTheme.displaySmall,
+                : Theme.of(context).textTheme.headlineSmall?.copyWith(
+                  color: Get.isDarkMode ? DarkColors.textTertiaryColor : LightColors.textTertiaryColor,
+                  fontWeight: FontWeight.w300,
+                ),
       ),
     );
   }

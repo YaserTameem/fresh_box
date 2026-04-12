@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fresh_box/core/constants/app_radius.dart';
 import 'package:fresh_box/core/constants/app_sizes.dart';
 import 'package:fresh_box/core/theme/light_colors.dart';
 
@@ -11,13 +10,19 @@ class CustomTextFormField extends StatefulWidget {
     required this.title,
     required this.validator,
     this.isPassword = false,
+    this.fillColor = LightColors.surfaceColor,
+    this.onChanged,
+    this.suffix,
   });
 
   final TextEditingController controller;
   final String hintText;
   final String title;
   final Function(String? value) validator;
+  final Function(String? value)? onChanged;
   final bool isPassword;
+  final Color fillColor;
+  final Widget? suffix;
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -34,12 +39,14 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         Text(widget.title, style: Theme.of(context).textTheme.headlineMedium),
         SizedBox(height: AppSizes.ph12),
         TextFormField(
+          onChanged: (value) => widget.onChanged!(value),
           controller: widget.controller,
           validator: (value) => widget.validator(value),
           obscureText: widget.isPassword && !_isVisible,
           obscuringCharacter: '*',
           style: TextStyle(fontSize: 16),
           decoration: InputDecoration(
+            suffix: widget.suffix,
             suffixIcon:
                 widget.isPassword
                     ? IconButton(
@@ -56,9 +63,9 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                     : null,
             errorStyle: TextStyle(fontSize: AppSizes.sp14),
             hintText: widget.hintText,
-            hintStyle: Theme.of(context).textTheme.bodySmall,
+            hintStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w300),
             filled: true,
-            fillColor: LightColors.surfaceColor,
+            fillColor: widget.fillColor,
           ),
         ),
       ],

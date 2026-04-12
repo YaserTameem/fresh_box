@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fresh_box/core/theme/dark_colors.dart';
+import 'package:fresh_box/core/theme/light_colors.dart';
+import 'package:get/get.dart';
 
 class RecommendedModel {
   final String image;
@@ -28,5 +31,9 @@ class RecommendedModel {
       price: 52.22,
     ),
   ];
-  static List<Color> cardColors = [Color(0x66EB6A58), Color(0xFFF0F3F9), Color(0xFFD1CFD5)];
+  static List<Color> cardColors = [
+    Get.isDarkMode ? DarkColors.primaryTintColor : LightColors.primaryTintColor,
+    Get.isDarkMode ? DarkColors.recommendedCardBackground : LightColors.recommendedCardBackground,
+    Get.isDarkMode ? DarkColors.cardBackground : LightColors.cardBackground,
+  ];
 }

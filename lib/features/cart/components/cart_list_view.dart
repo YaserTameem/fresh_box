@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:fresh_box/core/constants/app_radius.dart';
 import 'package:fresh_box/core/constants/app_shadows.dart';
 import 'package:fresh_box/core/constants/app_sizes.dart';
-import 'package:fresh_box/core/theme/app_text_style.dart';
+import 'package:fresh_box/core/theme/dark_colors.dart';
 import 'package:fresh_box/core/theme/light_colors.dart';
 import 'package:fresh_box/core/widget/custom_discount_badge.dart';
+import 'package:get/get.dart';
 
 class CardListView extends StatelessWidget {
   const CardListView({super.key});
@@ -20,7 +21,7 @@ class CardListView extends StatelessWidget {
           padding: EdgeInsets.all(AppSizes.pw12),
           height: AppSizes.h114,
           decoration: BoxDecoration(
-            color: LightColors.surfaceColor,
+            color: Get.isDarkMode ? DarkColors.surfaceColor : LightColors.surfaceColor,
             borderRadius: AppRadius.medium,
             boxShadow: AppShadows.mainSoftShadow,
           ),
@@ -50,18 +51,39 @@ class CardListView extends StatelessWidget {
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: AppSizes.sp21,
-                        color: LightColors.primaryColor,
+                        color: Get.isDarkMode ? DarkColors.primaryColor : LightColors.primaryColor,
                       ),
                     ),
-                    Text('Fresh Sandwitch', maxLines: 1, style: Theme.of(context).textTheme.bodySmall),
+                    Text(
+                      'Fresh Sandwitch',
+                      maxLines: 1,
+                      style: Theme.of(
+                        context,
+                      ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w300),
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Row(
                           children: [
-                            Icon(Icons.star, color: Color(0xFF5BC439), size: AppSizes.r20),
+                            Icon(
+                              Icons.star,
+                              color:
+                                  Get.isDarkMode
+                                      ? DarkColors.accentGreenColor
+                                      : LightColors.accentGreenColor,
+                              size: AppSizes.r20,
+                            ),
                             SizedBox(width: AppSizes.pw12),
-                            Text('4.5', style: AppTextStyle.ratingStyle),
+                            Text(
+                              '4.5',
+                              style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                                color:
+                                    Get.isDarkMode
+                                        ? DarkColors.accentGreenColor
+                                        : LightColors.accentGreenColor,
+                              ),
+                            ),
                           ],
                         ),
                         Row(
@@ -74,13 +96,19 @@ class CardListView extends StatelessWidget {
                                 height: AppSizes.h30,
                                 width: AppSizes.w30,
                                 decoration: BoxDecoration(
-                                  color: Color(0xFFD1CFD5),
+                                  color:
+                                      Get.isDarkMode
+                                          ? DarkColors.cardBackground
+                                          : LightColors.cardBackground,
                                   borderRadius: AppRadius.small,
                                 ),
                                 child: Container(
                                   height: AppSizes.h2,
                                   width: AppSizes.w10,
-                                  color: Color(0xFF363D4E),
+                                  color:
+                                      Get.isDarkMode
+                                          ? DarkColors.textBodyColor
+                                          : LightColors.textBodyColor,
                                 ),
                               ),
                             ),
@@ -89,7 +117,10 @@ class CardListView extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 17,
                                 fontWeight: FontWeight.w500,
-                                color: Color(0xFF363D4E),
+                                color:
+                                    Get.isDarkMode
+                                        ? DarkColors.textBodyColor
+                                        : LightColors.textBodyColor,
                               ),
                             ),
                             InkWell(
@@ -99,10 +130,20 @@ class CardListView extends StatelessWidget {
                                 height: AppSizes.h30,
                                 width: AppSizes.w30,
                                 decoration: BoxDecoration(
-                                  color: Color(0xFFD1CFD5),
+                                  color:
+                                      Get.isDarkMode
+                                          ? DarkColors.cardBackground
+                                          : LightColors.cardBackground,
                                   borderRadius: AppRadius.medium,
                                 ),
-                                child: Icon(Icons.add, size: AppSizes.r20, color: Color(0xFF363D4E)),
+                                child: Icon(
+                                  Icons.add,
+                                  size: AppSizes.r20,
+                                  color:
+                                      Get.isDarkMode
+                                          ? DarkColors.textBodyColor
+                                          : LightColors.textBodyColor,
+                                ),
                               ),
                             ),
                           ],

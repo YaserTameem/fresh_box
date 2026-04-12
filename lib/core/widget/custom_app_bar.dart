@@ -1,46 +1,74 @@
 import 'package:flutter/material.dart';
 import 'package:fresh_box/core/constants/app_radius.dart';
-import 'package:fresh_box/core/constants/app_shadows.dart';
 import 'package:fresh_box/core/constants/app_sizes.dart';
+import 'package:fresh_box/core/routing/app_routes.dart';
+import 'package:fresh_box/core/theme/dark_colors.dart';
 import 'package:fresh_box/core/theme/light_colors.dart';
+import 'package:fresh_box/features/search/search_screen.dart';
+import 'package:get/get.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppBar({super.key, required this.title});
+  const CustomAppBar({
+    super.key,
+    required this.title,
+    this.icon = Icons.search_outlined,
+    this.onTap,
+    this.showLeading = true,
+    this.centerTitle = true,
+    this.showActions = true,
+  });
 
   final String title;
+  final IconData? icon;
+  final Function()? onTap;
+  final bool showLeading;
+  final bool showActions;
+  final bool centerTitle;
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      actionsPadding: EdgeInsets.symmetric(horizontal: AppSizes.pw24),
-      leadingWidth: AppSizes.w100,
-      leading: Container(
-        margin: EdgeInsets.only(left: AppSizes.pw24, right: AppSizes.pw28, bottom: AppSizes.ph3),
-        decoration: BoxDecoration(
-          color: LightColors.surfaceColor,
-          borderRadius: AppRadius.medium,
-          boxShadow: AppShadows.lightShadow,
-        ),
-        child: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(Icons.arrow_back_ios),
-        ),
-      ),
-      title: Text(title),
-      actions: [
-        Container(
-          height: AppSizes.h48,
-          width: AppSizes.w48,
-          decoration: BoxDecoration(
-            color: LightColors.surfaceColor,
-            borderRadius: AppRadius.medium,
-            boxShadow: AppShadows.lightShadow,
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: AppSizes.pw21),
+      child: AppBar(
+        centerTitle: centerTitle,
+        leading:
+            showLeading
+                ? InkWell(
+                  onTap: onTap,
+                  child: Card(
+                    color: Get.isDarkMode ? DarkColors.surfaceColor : LightColors.surfaceColor,
+                    shape: RoundedRectangleBorder(borderRadius: AppRadius.medium),
+                    elevation: 2,
+                    child: Icon(Icons.arrow_back_ios),
+                  ),
+                )
+                : null,
+        title: Text(
+          title,
+          style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+            color: Get.isDarkMode ? DarkColors.textPrimaryColor : LightColors.textPrimaryColor,
           ),
-          child: IconButton(onPressed: () {}, icon: Icon(Icons.search_outlined)),
         ),
-      ],
+        actions: [
+          showActions
+              ? InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, AppRoutes.search);
+                },
+                child: Card(
+                  color: Get.isDarkMode ? DarkColors.surfaceColor : LightColors.surfaceColor,
+                  shape: RoundedRectangleBorder(borderRadius: AppRadius.medium),
+                  elevation: 2,
+                  child: SizedBox(
+                    height: AppSizes.h48,
+                    width: AppSizes.w48,
+                    child: Icon(icon ?? Icons.search_outlined),
+                  ),
+                ),
+              )
+              : SizedBox.shrink(),
+        ],
+      ),
     );
   }
 

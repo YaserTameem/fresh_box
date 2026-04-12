@@ -3,7 +3,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fresh_box/core/constants/app_radius.dart';
 import 'package:fresh_box/core/constants/app_sizes.dart';
 import 'package:fresh_box/core/theme/app_text_style.dart';
+import 'package:fresh_box/core/theme/dark_colors.dart';
 import 'package:fresh_box/core/theme/light_colors.dart';
+import 'package:get/get.dart';
 
 class CustomDiscountBadge extends StatelessWidget {
   const CustomDiscountBadge({super.key, this.discount});
@@ -16,7 +18,10 @@ class CustomDiscountBadge extends StatelessWidget {
       margin: EdgeInsets.all(AppSizes.pw8),
       height: AppSizes.h20,
       width: AppSizes.w54,
-      decoration: BoxDecoration(color: LightColors.primaryColor, borderRadius: AppRadius.xs),
+      decoration: BoxDecoration(
+        color: Get.isDarkMode ? DarkColors.textHintColor : LightColors.primaryColor,
+        borderRadius: AppRadius.xs,
+      ),
       child: Row(
         spacing: 3,
         mainAxisAlignment: MainAxisAlignment.center,

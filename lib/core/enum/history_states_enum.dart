@@ -1,0 +1,4 @@
+enum HistoryStatesEnum {
+  initial,
+  loaded,
+}
