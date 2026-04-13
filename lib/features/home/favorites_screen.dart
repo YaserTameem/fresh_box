@@ -19,15 +19,15 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: 'Favourite', centerTitle: false, showLeading: false),
+      appBar: CustomAppBar(title: 'favorites.title'.tr, centerTitle: false, showLeading: false),
       body: ListView.separated(
-        padding: EdgeInsets.all(AppSizes.ph24),
+        padding: EdgeInsets.all(AppSizes.w(24)),
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
           return Container(
-            padding: EdgeInsets.all(AppSizes.pw12),
-            height: AppSizes.h114,
+            padding: EdgeInsets.all(AppSizes.w(12)),
+            height: AppSizes.h(114),
             decoration: BoxDecoration(
               color: Get.isDarkMode ? DarkColors.surfaceColor : LightColors.surfaceColor,
               borderRadius: AppRadius.medium,
@@ -47,7 +47,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                     ],
                   ),
                 ),
-                SizedBox(width: AppSizes.pw14),
+                SizedBox(width: AppSizes.w(14)),
                 Expanded(
                   flex: 2,
                   child: Column(
@@ -59,7 +59,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                         '\$10',
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
-                          fontSize: AppSizes.sp21,
+                          fontSize: AppSizes.sp(21),
                           color: Get.isDarkMode ? DarkColors.primaryColor : LightColors.primaryColor,
                         ),
                       ),
@@ -81,9 +81,9 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                                     Get.isDarkMode
                                         ? DarkColors.accentGreenColor
                                         : LightColors.accentGreenColor,
-                                size: AppSizes.r20,
+                                size: AppSizes.r(20),
                               ),
-                              SizedBox(width: AppSizes.pw12),
+                              SizedBox(width: AppSizes.w(12)),
                               Text(
                                 '4.5',
                                 style: Theme.of(context).textTheme.headlineSmall!.copyWith(
@@ -102,7 +102,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                                 Icons.watch_later,
                                 color:
                                     Get.isDarkMode ? DarkColors.textSupColor : LightColors.textSupColor,
-                                size: AppSizes.r20,
+                                size: AppSizes.r(20),
                               ),
                               Text(
                                 '30',
@@ -122,15 +122,15 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                 ),
                 Container(
                   alignment: Alignment.center,
-                  height: AppSizes.h30,
-                  width: AppSizes.w30,
+                  height: AppSizes.h(30),
+                  width: AppSizes.w(30),
                   decoration: BoxDecoration(
                     color: Get.isDarkMode ? DarkColors.textPrimaryColor : LightColors.textPrimaryColor,
                     borderRadius: AppRadius.medium,
                   ),
                   child: Icon(
                     Icons.cancel_outlined,
-                    size: AppSizes.r20,
+                    size: AppSizes.r(20),
                     color: Get.isDarkMode ? DarkColors.surfaceColor : LightColors.surfaceColor,
                   ),
                 ),
@@ -139,10 +139,11 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
           );
         },
         separatorBuilder: (context, index) {
-          return SizedBox(height: AppSizes.h14);
+          return SizedBox(height: AppSizes.h(14));
         },
         itemCount: 2,
       ),
     );
   }
 }
+

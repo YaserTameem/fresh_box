@@ -46,7 +46,7 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       floatingActionButton: FloatingActionButton(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100.r)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppSizes.r(100))),
         onPressed: () {
           onFabPressed();
         },
@@ -70,15 +70,15 @@ class _MainScreenState extends State<MainScreen> {
         shape: CircularNotchedRectangle(),
         notchMargin: 8,
         child: SizedBox(
-          height: AppSizes.h65,
+          height: AppSizes.h(65),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Column(
                 children: [
                   Container(
-                    height: 2.h,
-                    width: AppSizes.w56,
+                    height: AppSizes.h(2),
+                    width: AppSizes.w(56),
                     color:
                         currentIndex == 0
                             ? Get.isDarkMode
@@ -87,7 +87,7 @@ class _MainScreenState extends State<MainScreen> {
                             : Colors.transparent,
                   ),
 
-                  SizedBox(height: AppSizes.ph22),
+                  SizedBox(height: AppSizes.h(22)),
                   IconButton(
                     onPressed: () {
                       inTabTapped(0);
@@ -111,8 +111,8 @@ class _MainScreenState extends State<MainScreen> {
               Column(
                 children: [
                   Container(
-                    height: 2.h,
-                    width: AppSizes.w56,
+                    height: AppSizes.h(2),
+                    width: AppSizes.w(56),
                     color:
                         currentIndex == 1
                             ? Get.isDarkMode
@@ -120,7 +120,7 @@ class _MainScreenState extends State<MainScreen> {
                                 : LightColors.textSecondaryColor
                             : Colors.transparent,
                   ),
-                  SizedBox(height: AppSizes.ph22),
+                  SizedBox(height: AppSizes.h(22)),
 
                   IconButton(
                     onPressed: () {
@@ -145,8 +145,8 @@ class _MainScreenState extends State<MainScreen> {
               Column(
                 children: [
                   Container(
-                    height: 2.h,
-                    width: AppSizes.w56,
+                    height: AppSizes.h(2),
+                    width: AppSizes.w(56),
                     color:
                         currentIndex == 3
                             ? Get.isDarkMode
@@ -154,7 +154,7 @@ class _MainScreenState extends State<MainScreen> {
                                 : LightColors.textSecondaryColor
                             : Colors.transparent,
                   ),
-                  SizedBox(height: AppSizes.ph22),
+                  SizedBox(height: AppSizes.h(22)),
 
                   IconButton(
                     onPressed: () {
@@ -179,8 +179,8 @@ class _MainScreenState extends State<MainScreen> {
               Column(
                 children: [
                   Container(
-                    height: 2.h,
-                    width: AppSizes.w56,
+                    height: AppSizes.h(2),
+                    width: AppSizes.w(56),
                     color:
                         currentIndex == 4
                             ? Get.isDarkMode
@@ -188,7 +188,7 @@ class _MainScreenState extends State<MainScreen> {
                                 : LightColors.textSecondaryColor
                             : Colors.transparent,
                   ),
-                  SizedBox(height: AppSizes.ph22),
+                  SizedBox(height: AppSizes.h(22)),
                   IconButton(
                     onPressed: () {
                       inTabTapped(4);
@@ -217,3 +217,4 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 }
+

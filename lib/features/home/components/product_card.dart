@@ -29,9 +29,9 @@ class _ProductCardState extends State<ProductCard> {
         Get.to(() => AppRoutes.productDetails);
       },
       child: Container(
-        height: AppSizes.h270,
-        width: AppSizes.w154,
-        padding: EdgeInsets.all(AppSizes.pw12),
+        height: AppSizes.h(270),
+        width: AppSizes.w(154),
+        padding: EdgeInsets.all(AppSizes.w(12)),
         decoration: BoxDecoration(
           color: Get.isDarkMode ? DarkColors.surfaceColor : LightColors.surfaceColor,
           borderRadius: AppRadius.medium,
@@ -52,16 +52,16 @@ class _ProductCardState extends State<ProductCard> {
                 ),
               ),
             ),
-            SizedBox(height: AppSizes.ph12),
+            SizedBox(height: AppSizes.h(12)),
             Text(model.name, style: Theme.of(context).textTheme.labelMedium),
-            SizedBox(height: AppSizes.ph8),
+            SizedBox(height: AppSizes.h(8)),
             Row(
               spacing: 8,
               children: [
                 Icon(
                   Icons.watch_later,
                   color: Get.isDarkMode ? DarkColors.textSupColor : LightColors.textSupColor,
-                  size: AppSizes.r20,
+                  size: AppSizes.r(20),
                 ),
                 Text(
                   '${model.time}',
@@ -71,14 +71,14 @@ class _ProductCardState extends State<ProductCard> {
                 ),
               ],
             ),
-            SizedBox(height: AppSizes.ph4),
+            SizedBox(height: AppSizes.h(4)),
             Row(
               spacing: 8,
               children: [
                 Icon(
                   Icons.star,
                   color: Get.isDarkMode ? DarkColors.accentGreenColor : LightColors.accentGreenColor,
-                  size: AppSizes.r20,
+                  size: AppSizes.r(20),
                 ),
                 Expanded(
                   child: Text(
@@ -118,3 +118,4 @@ class _ProductCardState extends State<ProductCard> {
     );
   }
 }
+

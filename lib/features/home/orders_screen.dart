@@ -4,7 +4,7 @@ import 'package:fresh_box/core/enum/history_states_enum.dart';
 import 'package:fresh_box/core/theme/dark_colors.dart';
 import 'package:fresh_box/core/theme/light_colors.dart';
 import 'package:fresh_box/core/widget/custom_app_bar.dart';
-import 'package:fresh_box/core/widget/custom_elevated_button1.dart';
+import 'package:fresh_box/core/widget/custom_elevated_button.dart';
 import 'package:fresh_box/features/home/models/history_model.dart';
 import 'package:get/get.dart';
 
@@ -47,16 +47,21 @@ class _OrdersScreenState extends State<OrdersScreen> with SingleTickerProviderSt
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: CustomAppBar(title: 'My Orders', onTap: () {}, centerTitle: false, showLeading: false),
+      appBar: CustomAppBar(
+        title: 'orders.title'.tr,
+        onTap: () {},
+        centerTitle: false,
+        showLeading: false,
+      ),
       body: Column(
         children: [
           Container(
-            margin: EdgeInsets.symmetric(horizontal: AppSizes.pw24, vertical: AppSizes.ph30),
-            height: AppSizes.h40,
-            width: AppSizes.w325,
+            margin: EdgeInsets.symmetric(horizontal: AppSizes.w(24), vertical: AppSizes.h(30)),
+            height: AppSizes.h(40),
+            width: AppSizes.w(325),
             decoration: BoxDecoration(
               color: Get.isDarkMode ? DarkColors.tabBackgroundColor : LightColors.tabBackgroundColor,
-              borderRadius: BorderRadius.circular(AppSizes.r10),
+              borderRadius: BorderRadius.circular(AppSizes.r(10)),
             ),
             child: TabBar(
               controller: _tabController,
@@ -71,7 +76,7 @@ class _OrdersScreenState extends State<OrdersScreen> with SingleTickerProviderSt
 
               tabs: [
                 Text(
-                  'History',
+                  'orders.tab.history'.tr,
                   style:
                       currentIndex == 0
                           ? Theme.of(context).textTheme.labelMedium
@@ -81,7 +86,7 @@ class _OrdersScreenState extends State<OrdersScreen> with SingleTickerProviderSt
                           ),
                 ),
                 Text(
-                  'Upcoming',
+                  'orders.tab.upcoming'.tr,
                   style:
                       currentIndex == 1
                           ? Theme.of(context).textTheme.labelMedium
@@ -100,14 +105,14 @@ class _OrdersScreenState extends State<OrdersScreen> with SingleTickerProviderSt
                 switch (historyState) {
                   HistoryStatesEnum.initial => Center(
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: AppSizes.pw24),
+                      padding: EdgeInsets.symmetric(horizontal: AppSizes.w(24)),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Image.asset('assets/images/Unhappy2.png'),
-                          SizedBox(height: AppSizes.ph20),
+                          SizedBox(height: AppSizes.h(20)),
                           Text(
-                            'Empty History',
+                            'orders.empty.title'.tr,
                             style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                               color:
                                   Get.isDarkMode
@@ -115,38 +120,38 @@ class _OrdersScreenState extends State<OrdersScreen> with SingleTickerProviderSt
                                       : LightColors.textPrimaryColor,
                             ),
                           ),
-                          SizedBox(height: AppSizes.ph4),
+                          SizedBox(height: AppSizes.h(4)),
                           Text(
                             textAlign: TextAlign.center,
-                            "You don't have a transaction\nhistory. Let’s Order Something",
+                            'orders.empty.message'.tr,
                             style: Theme.of(
                               context,
                             ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w300),
                           ),
-                          SizedBox(height: AppSizes.ph56),
+                          SizedBox(height: AppSizes.h(56)),
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              fixedSize: Size(MediaQuery.of(context).size.width, AppSizes.h50),
+                              fixedSize: Size(MediaQuery.of(context).size.width, AppSizes.h(50)),
                             ),
                             onPressed: () {},
-                            child: Text('Order Now'),
+                            child: Text('orders.empty.cta'.tr),
                           ),
                         ],
                       ),
                     ),
                   ),
                   HistoryStatesEnum.loaded => Padding(
-                    padding: EdgeInsets.symmetric(horizontal: AppSizes.pw24),
+                    padding: EdgeInsets.symmetric(horizontal: AppSizes.w(24)),
                     child: ListView.separated(
                       itemBuilder: (context, index) {
                         final item = HistoryModel.historyData[index];
                         return Container(
-                          padding: EdgeInsets.symmetric(horizontal: AppSizes.pw20),
-                          height: AppSizes.h150,
-                          width: AppSizes.w325,
+                          padding: EdgeInsets.symmetric(horizontal: AppSizes.w(20)),
+                          height: AppSizes.h(150),
+                          width: AppSizes.w(325),
                           decoration: BoxDecoration(
                             color: Get.isDarkMode ? DarkColors.surfaceColor : LightColors.surfaceColor,
-                            borderRadius: BorderRadius.circular(AppSizes.r10),
+                            borderRadius: BorderRadius.circular(AppSizes.r(10)),
                             boxShadow: [
                               BoxShadow(
                                 color:
@@ -160,7 +165,7 @@ class _OrdersScreenState extends State<OrdersScreen> with SingleTickerProviderSt
                           ),
                           child: Column(
                             children: [
-                              SizedBox(height: AppSizes.ph20),
+                              SizedBox(height: AppSizes.h(20)),
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -183,7 +188,7 @@ class _OrdersScreenState extends State<OrdersScreen> with SingleTickerProviderSt
                                       Text(
                                         item.orderStatus,
                                         style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                                          fontSize: AppSizes.sp13,
+                                          fontSize: AppSizes.sp(13),
                                           color:
                                               item.isDelivered
                                                   ? Get.isDarkMode
@@ -203,7 +208,7 @@ class _OrdersScreenState extends State<OrdersScreen> with SingleTickerProviderSt
                                   ),
                                 ],
                               ),
-                              SizedBox(height: AppSizes.ph16),
+                              SizedBox(height: AppSizes.h(16)),
                               Row(
                                 spacing: 13,
                                 children: [
@@ -211,7 +216,7 @@ class _OrdersScreenState extends State<OrdersScreen> with SingleTickerProviderSt
                                     child: ElevatedButton(
                                       onPressed: () {},
                                       child: Text(
-                                        'Re-order',
+                                        'orders.action.reorder'.tr,
                                         style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                                           color:
                                               Get.isDarkMode
@@ -233,7 +238,7 @@ class _OrdersScreenState extends State<OrdersScreen> with SingleTickerProviderSt
                                                 : LightColors.cardBackground,
                                       ),
                                       child: Text(
-                                        'Rate',
+                                        'orders.action.rate'.tr,
                                         style: Theme.of(context).textTheme.headlineSmall,
                                       ),
                                     ),
@@ -245,7 +250,7 @@ class _OrdersScreenState extends State<OrdersScreen> with SingleTickerProviderSt
                         );
                       },
                       separatorBuilder: (context, index) {
-                        return SizedBox(height: AppSizes.ph20);
+                        return SizedBox(height: AppSizes.h(20));
                       },
                       itemCount: HistoryModel.historyData.length,
                     ),
@@ -253,24 +258,27 @@ class _OrdersScreenState extends State<OrdersScreen> with SingleTickerProviderSt
                 },
 
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: AppSizes.pw24),
+                  padding: EdgeInsets.symmetric(horizontal: AppSizes.w(24)),
                   child: SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       spacing: 20,
                       children: [
-                        Text('Order in progress', style: Theme.of(context).textTheme.labelMedium),
+                        Text(
+                          'orders.section.in_progress'.tr,
+                          style: Theme.of(context).textTheme.labelMedium,
+                        ),
                         ListView.separated(
                           itemBuilder: (context, index) {
                             final item = HistoryModel.historyData[index];
                             return Container(
-                              padding: EdgeInsets.symmetric(horizontal: AppSizes.pw20),
-                              height: AppSizes.h150,
-                              width: AppSizes.w325,
+                              padding: EdgeInsets.symmetric(horizontal: AppSizes.w(20)),
+                              height: AppSizes.h(150),
+                              width: AppSizes.w(325),
                               decoration: BoxDecoration(
                                 color:
                                     Get.isDarkMode ? DarkColors.surfaceColor : LightColors.surfaceColor,
-                                borderRadius: BorderRadius.circular(AppSizes.r10),
+                                borderRadius: BorderRadius.circular(AppSizes.r(10)),
                                 boxShadow: [
                                   BoxShadow(
                                     color:
@@ -284,7 +292,7 @@ class _OrdersScreenState extends State<OrdersScreen> with SingleTickerProviderSt
                               ),
                               child: Column(
                                 children: [
-                                  SizedBox(height: AppSizes.ph20),
+                                  SizedBox(height: AppSizes.h(20)),
                                   Row(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -305,9 +313,9 @@ class _OrdersScreenState extends State<OrdersScreen> with SingleTickerProviderSt
                                             ),
                                           ),
                                           Text(
-                                            'On the Way',
+                                            'orders.status.on_the_way'.tr,
                                             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                                              fontSize: AppSizes.sp13,
+                                              fontSize: AppSizes.sp(13),
                                               color:
                                                   Get.isDarkMode
                                                       ? DarkColors.accentBlueColor
@@ -323,7 +331,7 @@ class _OrdersScreenState extends State<OrdersScreen> with SingleTickerProviderSt
                                       ),
                                     ],
                                   ),
-                                  SizedBox(height: AppSizes.ph16),
+                                  SizedBox(height: AppSizes.h(16)),
                                   Row(
                                     spacing: 13,
                                     children: [
@@ -337,7 +345,7 @@ class _OrdersScreenState extends State<OrdersScreen> with SingleTickerProviderSt
                                           ),
                                           onPressed: () {},
                                           child: Text(
-                                            'Track Order',
+                                            'orders.action.track_order'.tr,
                                             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                                               color:
                                                   Get.isDarkMode
@@ -357,7 +365,7 @@ class _OrdersScreenState extends State<OrdersScreen> with SingleTickerProviderSt
                                                     : LightColors.cancelActionColor,
                                           ),
                                           child: Text(
-                                            'Cancel',
+                                            'orders.action.cancel'.tr,
                                             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                                               color:
                                                   Get.isDarkMode
@@ -376,7 +384,7 @@ class _OrdersScreenState extends State<OrdersScreen> with SingleTickerProviderSt
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
                           separatorBuilder: (context, index) {
-                            return SizedBox(height: AppSizes.ph20);
+                            return SizedBox(height: AppSizes.h(20));
                           },
                           itemCount: HistoryModel.historyData.length - 1,
                         ),
@@ -404,18 +412,18 @@ void showRateDialog(BuildContext context) {
         builder: (context, setState) {
           return AlertDialog(
             backgroundColor: Get.isDarkMode ? DarkColors.surfaceColor : LightColors.surfaceColor,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppSizes.r(12))),
             title: Text(
               textAlign: TextAlign.start,
-              'Rate This Food',
+              'orders.rate_dialog.title'.tr,
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                fontSize: AppSizes.sp21,
+                fontSize: AppSizes.sp(21),
                 color: Get.isDarkMode ? DarkColors.dialogTitleColor : LightColors.dialogTitleColor,
               ),
             ),
             content: Text(
               textAlign: TextAlign.start,
-              'How is your experience enjoying this food? Let me know what you think.',
+              'orders.rate_dialog.message'.tr,
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w300),
             ),
             actions: [
@@ -433,12 +441,12 @@ void showRateDialog(BuildContext context) {
                           Get.isDarkMode
                               ? DarkColors.textSecondaryColor
                               : LightColors.textSecondaryColor,
-                      size: 32,
+                      size: AppSizes.r(32),
                     ),
                   );
                 }),
               ),
-              SizedBox(height: AppSizes.ph30),
+              SizedBox(height: AppSizes.h(30)),
               TextField(
                 maxLines: 2,
                 decoration: InputDecoration(
@@ -447,16 +455,16 @@ void showRateDialog(BuildContext context) {
                           ? DarkColors.inputBackgroundColor
                           : LightColors.inputBackgroundColor,
                   filled: true,
-                  hintText: 'This food really\ntasty',
+                  hintText: 'orders.rate_dialog.hint'.tr,
                   hintStyle: Theme.of(
                     context,
                   ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w300),
                 ),
               ),
-              SizedBox(height: AppSizes.ph20),
+              SizedBox(height: AppSizes.h(20)),
 
-              CustomElevatedButton1(
-                text: 'Continue',
+              CustomElevatedButton(
+                text: 'common.continue'.tr,
                 onPressed: () {
                   Navigator.pop(context);
                 },
@@ -468,3 +476,4 @@ void showRateDialog(BuildContext context) {
     },
   );
 }
+

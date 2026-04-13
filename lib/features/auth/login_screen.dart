@@ -4,9 +4,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fresh_box/core/constants/app_sizes.dart';
 import 'package:fresh_box/core/theme/dark_colors.dart';
 import 'package:fresh_box/core/theme/light_colors.dart';
-import 'package:fresh_box/core/widget/custom_elevated_button1.dart';
+import 'package:fresh_box/core/widget/custom_elevated_button.dart';
 import 'package:fresh_box/core/widget/custom_text_form_field.dart';
-import 'package:fresh_box/features/auth/components/custom_elevated_button.dart';
+import 'package:fresh_box/features/auth/components/custom_auth_elevated_button.dart';
 import 'package:fresh_box/features/auth/sing_up_screen.dart';
 import 'package:get/get.dart';
 
@@ -55,31 +55,31 @@ class _LoginScreenState extends State<LoginScreen> {
           key: _key,
           child: SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: AppSizes.ph24, horizontal: AppSizes.pw24),
+              padding: EdgeInsets.symmetric(vertical: AppSizes.h(24), horizontal: AppSizes.w(24)),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Center(
                     child: Image.asset(
                       'assets/images/logo.png',
-                      height: AppSizes.h22,
-                      width: AppSizes.w114,
+                      height: AppSizes.h(22),
+                      width: AppSizes.w(114),
                     ),
                   ),
-                  SizedBox(height: AppSizes.ph38),
-                  Text('Let’s Sign You In', style: Theme.of(context).textTheme.headlineLarge),
+                  SizedBox(height: AppSizes.h(38)),
+                  Text('auth.login.title'.tr, style: Theme.of(context).textTheme.headlineLarge),
                   Text(
-                    'Welcome back, you’ve been missed!',
+                    'auth.login.subtitle'.tr,
                     style: Theme.of(
                       context,
                     ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w300),
                   ),
-                  SizedBox(height: AppSizes.ph24),
+                  SizedBox(height: AppSizes.h(24)),
                   CustomTextFormField(
                     controller: emailController,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter your username or E-mail';
+                        return 'auth.login.username_or_email.required'.tr;
                       }
                       // final RegExp passwordRegex = RegExp(r'^(?=.*\d).{8,}$');
                       //
@@ -88,17 +88,17 @@ class _LoginScreenState extends State<LoginScreen> {
                       // }
                       return null;
                     },
-                    hintText: 'Enter your username or E-mail',
-                    title: 'Username or E-mail',
+                    hintText: 'auth.login.username_or_email.hint'.tr,
+                    title: 'auth.login.username_or_email.label'.tr,
                   ),
 
-                  SizedBox(height: AppSizes.ph20),
+                  SizedBox(height: AppSizes.h(20)),
                   CustomTextFormField(
                     controller: passwordController,
                     isPassword: true,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter your Password';
+                        return 'auth.login.password.required'.tr;
                       }
                       // final RegExp passwordRegex = RegExp(r'^(?=.*\d).{8,}$');
                       //
@@ -107,18 +107,21 @@ class _LoginScreenState extends State<LoginScreen> {
                       // }
                       return null;
                     },
-                    hintText: 'Enter your password',
-                    title: 'Password',
+                    hintText: 'auth.login.password.hint'.tr,
+                    title: 'auth.login.password.label'.tr,
                   ),
-                  SizedBox(height: AppSizes.ph14),
+                  SizedBox(height: AppSizes.h(14)),
                   Align(
                     alignment: Alignment.topRight,
                     child: TextButton(
                       onPressed: () {},
-                      child: Text('Forgot Password?', style: Theme.of(context).textTheme.headlineMedium),
+                      child: Text(
+                        'auth.login.forgot_password'.tr,
+                        style: Theme.of(context).textTheme.headlineMedium,
+                      ),
                     ),
                   ),
-                  SizedBox(height: AppSizes.ph40),
+                  SizedBox(height: AppSizes.h(40)),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       fixedSize: Size(MediaQuery.of(context).size.width, 50),
@@ -133,17 +136,17 @@ class _LoginScreenState extends State<LoginScreen> {
                       }
                     },
                     child: Text(
-                      'LogIn',
+                      'auth.login.submit'.tr,
                       style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                         color: Get.isDarkMode ? DarkColors.buttonTextColor : LightColors.buttonTextColor,
                       ),
                     ),
                   ),
-                  SizedBox(height: AppSizes.ph20),
+                  SizedBox(height: AppSizes.h(20)),
                   Center(
                     child: RichText(
                       text: TextSpan(
-                        text: 'Don’t have an account? ',
+                        text: 'auth.login.no_account'.tr,
                         style: Theme.of(context).textTheme.headlineMedium,
                         children: [
                           TextSpan(),
@@ -156,7 +159,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       MaterialPageRoute(builder: (context) => SingUpScreen()),
                                     );
                                   },
-                            text: 'Sign Up',
+                            text: 'auth.login.sign_up'.tr,
                             style: Theme.of(context).textTheme.labelMedium?.copyWith(
                               color: Get.isDarkMode ? DarkColors.primaryColor : LightColors.primaryColor,
                             ),
@@ -165,17 +168,17 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(height: AppSizes.ph84),
-                  CustomElevatedButton(
-                    label: 'Continue With Google',
+                  SizedBox(height: AppSizes.h(84)),
+                  CustomAuthElevatedButton(
+                    label: 'auth.login.continue_google'.tr,
                     icon: 'assets/images/google_icon.svg',
                     backgroundColor:
                         Get.isDarkMode ? DarkColors.buttonTextColor : LightColors.buttonTextColor,
                   ),
-                  SizedBox(height: AppSizes.ph14),
-                  CustomElevatedButton(
+                  SizedBox(height: AppSizes.h(14)),
+                  CustomAuthElevatedButton(
                     isFacebook: true,
-                    label: 'Continue With Facebook',
+                    label: 'auth.login.continue_facebook'.tr,
                     icon: 'assets/images/facebook_icon.svg',
                     backgroundColor:
                         Get.isDarkMode ? DarkColors.accentBlueColor : LightColors.accentBlueColor,
@@ -197,16 +200,16 @@ class _LoginScreenState extends State<LoginScreen> {
           builder:
               (context, setState) => AlertDialog(
                 backgroundColor: Get.isDarkMode ? DarkColors.surfaceColor : LightColors.surfaceColor,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppSizes.r(12))),
                 title: Text(
-                  'Password Recovery',
+                  'auth.forgot.title'.tr,
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    fontSize: AppSizes.sp21,
+                    fontSize: AppSizes.sp(21),
                     color: Get.isDarkMode ? DarkColors.dialogTitleColor : LightColors.dialogTitleColor,
                   ),
                 ),
                 content: Text(
-                  'Enter your email for the verification proccess, we will send you link to Reset your Password.',
+                  'auth.forgot.message'.tr,
                   style: Theme.of(
                     context,
                   ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w300),
@@ -232,22 +235,22 @@ class _LoginScreenState extends State<LoginScreen> {
                       });
                     },
                     controller: confirmPasswordEmailController,
-                    hintText: 'Enter your e-mail',
-                    title: 'Email Id',
+                    hintText: 'auth.forgot.email.hint'.tr,
+                    title: 'auth.forgot.email.label'.tr,
                     fillColor:
                         Get.isDarkMode
                             ? DarkColors.inputBackgroundColor
                             : LightColors.inputBackgroundColor,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter your E-mail';
+                        return 'auth.forgot.email.required'.tr;
                       }
                       return null;
                     },
                   ),
-                  SizedBox(height: AppSizes.ph56),
-                  CustomElevatedButton1(
-                    text: 'Continue',
+                  SizedBox(height: AppSizes.h(56)),
+                  CustomElevatedButton(
+                    text: 'common.continue'.tr,
                     onPressed:
                         isButtonEnabled
                             ? () {
@@ -290,16 +293,16 @@ class _LoginScreenState extends State<LoginScreen> {
           builder: (context, setState) {
             return AlertDialog(
               backgroundColor: Get.isDarkMode ? DarkColors.surfaceColor : LightColors.surfaceColor,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppSizes.r(12))),
               title: Text(
-                'Reset Your Password',
+                'auth.reset.title'.tr,
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  fontSize: AppSizes.sp21,
+                  fontSize: AppSizes.sp(21),
                   color: Get.isDarkMode ? DarkColors.dialogTitleColor : LightColors.dialogTitleColor,
                 ),
               ),
               content: Text(
-                'At least 9 characters, with uppercase and lowercase letters',
+                'auth.reset.message'.tr,
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w300),
               ),
               actions: [
@@ -315,8 +318,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           : LightColors.inputBackgroundColor,
                   controller: resetPasswordController,
                   isPassword: true,
-                  hintText: 'new password',
-                  title: 'Password',
+                  hintText: 'auth.reset.new_password.hint'.tr,
+                  title: 'auth.reset.new_password.label'.tr,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return '';
@@ -324,7 +327,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     return null;
                   },
                 ),
-                SizedBox(height: AppSizes.ph20),
+                SizedBox(height: AppSizes.h(20)),
                 CustomTextFormField(
                   fillColor:
                       Get.isDarkMode
@@ -332,8 +335,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           : LightColors.inputBackgroundColor,
                   controller: confirmResetPasswordController,
                   isPassword: true,
-                  hintText: 'Confirm new password',
-                  title: 'Confirm Password',
+                  hintText: 'auth.reset.confirm_password.hint'.tr,
+                  title: 'auth.reset.confirm_password.label'.tr,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return '';
@@ -341,20 +344,20 @@ class _LoginScreenState extends State<LoginScreen> {
                     return null;
                   },
                 ),
-                SizedBox(height: AppSizes.ph14),
+                SizedBox(height: AppSizes.h(14)),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    buildRequirement('1 Capital latter', hasUpperCase),
-                    SizedBox(height: AppSizes.ph8),
-                    buildRequirement('1 Number', hasNumber),
-                    SizedBox(height: AppSizes.ph8),
-                    buildRequirement('1 Spacial Character', hasSpecialChar),
+                    buildRequirement('auth.reset.require_upper'.tr, hasUpperCase),
+                    SizedBox(height: AppSizes.h(8)),
+                    buildRequirement('auth.reset.require_number'.tr, hasNumber),
+                    SizedBox(height: AppSizes.h(8)),
+                    buildRequirement('auth.reset.require_special'.tr, hasSpecialChar),
                   ],
                 ),
-                SizedBox(height: AppSizes.ph40),
-                CustomElevatedButton1(
-                  text: 'Continue',
+                SizedBox(height: AppSizes.h(40)),
+                CustomElevatedButton(
+                  text: 'common.continue'.tr,
                   onPressed:
                       valid()
                           ? () {
@@ -388,9 +391,9 @@ class _LoginScreenState extends State<LoginScreen> {
         if (isValid)
           Text(
             text,
-            style: Theme.of(
-              context,
-            ).textTheme.headlineSmall?.copyWith(color:Get.isDarkMode?DarkColors.accentGreenColor: LightColors.accentGreenColor),
+            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+              color: Get.isDarkMode ? DarkColors.accentGreenColor : LightColors.accentGreenColor,
+            ),
           ),
       ],
     );
@@ -401,26 +404,26 @@ class _LoginScreenState extends State<LoginScreen> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          backgroundColor:Get.isDarkMode?DarkColors.surfaceColor: LightColors.surfaceColor,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          backgroundColor: Get.isDarkMode ? DarkColors.surfaceColor : LightColors.surfaceColor,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppSizes.r(12))),
           title: Text(
             textAlign: TextAlign.center,
-            'Congratulations!',
+            'auth.reset_success.title'.tr,
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-              fontSize: AppSizes.sp21,
-              color:Get.isDarkMode?DarkColors.dialogTitleColor: LightColors.dialogTitleColor,
+              fontSize: AppSizes.sp(21),
+              color: Get.isDarkMode ? DarkColors.dialogTitleColor : LightColors.dialogTitleColor,
             ),
           ),
           content: Text(
             textAlign: TextAlign.center,
-            'You successfully rest your password.Now you are good to go',
+            'auth.reset_success.message'.tr,
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w300),
           ),
           actions: [
             SvgPicture.asset('assets/images/successfully_rest.svg'),
-            SizedBox(height: AppSizes.ph40),
-            CustomElevatedButton1(
-              text: 'Jump Into Log In',
+            SizedBox(height: AppSizes.h(40)),
+            CustomElevatedButton(
+              text: 'auth.reset_success.cta'.tr,
               onPressed: () {
                 Navigator.pop(context);
               },
@@ -431,3 +434,4 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
+

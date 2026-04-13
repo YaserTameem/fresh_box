@@ -15,7 +15,7 @@ class SectionHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: AppSizes.pw24),
+      padding: EdgeInsets.symmetric(horizontal: AppSizes.w(24)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -31,7 +31,7 @@ class SectionHeader extends StatelessWidget {
               shape: RoundedRectangleBorder(borderRadius: AppRadius.xs),
               backgroundColor:
                   Get.isDarkMode ? DarkColors.textSecondaryColor : LightColors.textSecondaryColor,
-              fixedSize: Size(AppSizes.w78, AppSizes.h26),
+              fixedSize: Size(AppSizes.w(78), AppSizes.h(26)),
             ),
             onPressed: onPressed,
             child: Text(
@@ -46,3 +46,4 @@ class SectionHeader extends StatelessWidget {
     );
   }
 }
+

@@ -15,9 +15,9 @@ class CustomDiscountBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(AppSizes.pw8),
-      height: AppSizes.h20,
-      width: AppSizes.w54,
+      margin: EdgeInsets.all(AppSizes.w(8)),
+      height: AppSizes.h(20),
+      width: AppSizes.w(54),
       decoration: BoxDecoration(
         color: Get.isDarkMode ? DarkColors.textHintColor : LightColors.primaryColor,
         borderRadius: AppRadius.xs,
@@ -33,3 +33,4 @@ class CustomDiscountBadge extends StatelessWidget {
     );
   }
 }
+

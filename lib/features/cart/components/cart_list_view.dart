@@ -13,13 +13,13 @@ class CardListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      padding: EdgeInsets.only(bottom: AppSizes.ph30),
+      padding: EdgeInsets.only(bottom: AppSizes.h(30)),
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         return Container(
-          padding: EdgeInsets.all(AppSizes.pw12),
-          height: AppSizes.h114,
+          padding: EdgeInsets.all(AppSizes.w(12)),
+          height: AppSizes.h(114),
           decoration: BoxDecoration(
             color: Get.isDarkMode ? DarkColors.surfaceColor : LightColors.surfaceColor,
             borderRadius: AppRadius.medium,
@@ -38,7 +38,7 @@ class CardListView extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(width: AppSizes.pw14),
+              SizedBox(width: AppSizes.w(14)),
               Expanded(
                 flex: 2,
                 child: Column(
@@ -50,7 +50,7 @@ class CardListView extends StatelessWidget {
                       '\$10',
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
-                        fontSize: AppSizes.sp21,
+                        fontSize: AppSizes.sp(21),
                         color: Get.isDarkMode ? DarkColors.primaryColor : LightColors.primaryColor,
                       ),
                     ),
@@ -72,9 +72,9 @@ class CardListView extends StatelessWidget {
                                   Get.isDarkMode
                                       ? DarkColors.accentGreenColor
                                       : LightColors.accentGreenColor,
-                              size: AppSizes.r20,
+                              size: AppSizes.r(20),
                             ),
-                            SizedBox(width: AppSizes.pw12),
+                            SizedBox(width: AppSizes.w(12)),
                             Text(
                               '4.5',
                               style: Theme.of(context).textTheme.headlineSmall!.copyWith(
@@ -93,8 +93,8 @@ class CardListView extends StatelessWidget {
                               onTap: () {},
                               child: Container(
                                 alignment: Alignment.center,
-                                height: AppSizes.h30,
-                                width: AppSizes.w30,
+                                height: AppSizes.h(30),
+                                width: AppSizes.w(30),
                                 decoration: BoxDecoration(
                                   color:
                                       Get.isDarkMode
@@ -103,8 +103,8 @@ class CardListView extends StatelessWidget {
                                   borderRadius: AppRadius.small,
                                 ),
                                 child: Container(
-                                  height: AppSizes.h2,
-                                  width: AppSizes.w10,
+                                  height: AppSizes.h(2),
+                                  width: AppSizes.w(10),
                                   color:
                                       Get.isDarkMode
                                           ? DarkColors.textBodyColor
@@ -115,7 +115,7 @@ class CardListView extends StatelessWidget {
                             Text(
                               '10',
                               style: TextStyle(
-                                fontSize: 17,
+                                fontSize: AppSizes.sp(17),
                                 fontWeight: FontWeight.w500,
                                 color:
                                     Get.isDarkMode
@@ -127,8 +127,8 @@ class CardListView extends StatelessWidget {
                               onTap: () {},
                               child: Container(
                                 alignment: Alignment.center,
-                                height: AppSizes.h30,
-                                width: AppSizes.w30,
+                                height: AppSizes.h(30),
+                                width: AppSizes.w(30),
                                 decoration: BoxDecoration(
                                   color:
                                       Get.isDarkMode
@@ -138,7 +138,7 @@ class CardListView extends StatelessWidget {
                                 ),
                                 child: Icon(
                                   Icons.add,
-                                  size: AppSizes.r20,
+                                  size: AppSizes.r(20),
                                   color:
                                       Get.isDarkMode
                                           ? DarkColors.textBodyColor
@@ -158,9 +158,10 @@ class CardListView extends StatelessWidget {
         );
       },
       separatorBuilder: (context, index) {
-        return SizedBox(height: AppSizes.h14);
+        return SizedBox(height: AppSizes.h(14));
       },
       itemCount: 2,
     );
   }
 }
+

@@ -22,26 +22,26 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'Cart',
+        title: 'cart.title'.tr,
         onTap: () {
           Navigator.pop(context);
         },
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: AppSizes.pw24, vertical: AppSizes.ph32),
+          padding: EdgeInsets.symmetric(horizontal: AppSizes.w(24), vertical: AppSizes.h(32)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CardListView(),
-              Text('Recepient Address', style: Theme.of(context).textTheme.labelMedium),
-              SizedBox(height: AppSizes.ph20),
+              Text('cart.recipient_address'.tr, style: Theme.of(context).textTheme.labelMedium),
+              SizedBox(height: AppSizes.h(20)),
               Container(
-                padding: EdgeInsets.only(left: AppSizes.pw16, top: AppSizes.ph14),
-                height: AppSizes.h104,
+                padding: EdgeInsets.only(left: AppSizes.w(16), top: AppSizes.h(14)),
+                height: AppSizes.h(104),
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color:Get.isDarkMode?DarkColors.cardBackground: LightColors.cardBackground,
+                  color: Get.isDarkMode ? DarkColors.cardBackground : LightColors.cardBackground,
                   borderRadius: AppRadius.medium,
                 ),
                 child: Text(
@@ -50,9 +50,9 @@ class CartScreen extends StatelessWidget {
                   style: Theme.of(context).textTheme.headlineMedium,
                 ),
               ),
-              SizedBox(height: AppSizes.ph30),
+              SizedBox(height: AppSizes.h(30)),
               OrderReview(
-                buttonText: 'Process to Payment',
+                buttonText: 'cart.checkout'.tr,
                 onPressed: () {
                   Navigator.pushNamed(context, AppRoutes.payment);
                 },
@@ -64,3 +64,4 @@ class CartScreen extends StatelessWidget {
     );
   }
 }
+

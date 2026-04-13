@@ -9,18 +9,20 @@ import 'package:fresh_box/features/home/popular_screen.dart';
 import 'package:fresh_box/features/home/product_details_screen.dart';
 import 'package:fresh_box/features/main/main_screen.dart';
 import 'package:fresh_box/features/notifcations/notifications_screen.dart';
+import 'package:fresh_box/features/onboarding/binding/onboarding_binding.dart';
 import 'package:fresh_box/features/onboarding/onboarding_screen.dart';
 import 'package:fresh_box/features/payment/payment_failed_screen.dart';
 import 'package:fresh_box/features/payment/payment_screen.dart';
 import 'package:fresh_box/features/payment/payment_successful_screen.dart';
 import 'package:fresh_box/features/search/search_screen.dart';
+import 'package:fresh_box/features/splash/binding/splash_binding.dart';
 import 'package:fresh_box/features/splash/splash_screen.dart';
 import 'package:get/get.dart';
 
 class AppPages {
   static final routes = <GetPage<dynamic>>[
-    GetPage(name: AppRoutes.splash, page: () => SplashScreen()),
-    GetPage(name: AppRoutes.onboarding, page: () => OnboardingScreen()),
+    GetPage(name: AppRoutes.splash, page: () => SplashScreen(), binding: SplashBinding()),
+    GetPage(name: AppRoutes.onboarding, page: () => OnboardingScreen(), binding: OnboardingBinding()),
     GetPage(name: AppRoutes.singUp, page: () => SingUpScreen()),
     GetPage(name: AppRoutes.login, page: () => LoginScreen()),
     GetPage(name: AppRoutes.home, page: () => HomeScreen()),

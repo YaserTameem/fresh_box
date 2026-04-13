@@ -30,7 +30,7 @@ class AppTheme {
         titleTextStyle: TextStyle(
           fontFamily: _fontFamily,
           fontWeight: FontWeight.w500,
-          fontSize: AppSizes.sp21,
+          fontSize: AppSizes.sp(21),
           color: LightColors.textPrimaryColor,
         ),
       ),
@@ -40,25 +40,25 @@ class AppTheme {
         headlineLarge: TextStyle(
           fontFamily: _fontFamily,
           fontWeight: FontWeight.w500,
-          fontSize: AppSizes.sp21,
+          fontSize: AppSizes.sp(21),
           color: LightColors.textTertiaryColor,
         ),
         headlineMedium: TextStyle(
           fontFamily: _fontFamily,
           fontWeight: FontWeight.w300,
-          fontSize: AppSizes.sp17,
+          fontSize: AppSizes.sp(17),
           color: LightColors.textSecondaryColor,
         ),
         headlineSmall: TextStyle(
           fontFamily: _fontFamily,
           fontWeight: FontWeight.w500,
-          fontSize: AppSizes.sp15,
+          fontSize: AppSizes.sp(15),
           color: LightColors.textSecondaryColor,
         ),
         labelMedium: TextStyle(
           fontFamily: _fontFamily,
           fontWeight: FontWeight.w500,
-          fontSize: AppSizes.sp17,
+          fontSize: AppSizes.sp(17),
           color: LightColors.textSecondaryColor,
         ),
       ),
@@ -86,7 +86,7 @@ class AppTheme {
           textStyle: TextStyle(
             fontFamily: _fontFamily,
             fontWeight: FontWeight.w500,
-            fontSize: AppSizes.sp21,
+            fontSize: AppSizes.sp(21),
             color: LightColors.surfaceColor,
           ),
           backgroundColor: LightColors.primaryColor,
@@ -124,7 +124,7 @@ class AppTheme {
         titleTextStyle: TextStyle(
           fontFamily: _fontFamily,
           fontWeight: FontWeight.w500,
-          fontSize: AppSizes.sp21,
+          fontSize: AppSizes.sp(21),
           color: DarkColors.textPrimaryColor,
         ),
         iconTheme: const IconThemeData(color: DarkColors.textPrimaryColor),
@@ -134,25 +134,25 @@ class AppTheme {
         headlineLarge: TextStyle(
           fontFamily: _fontFamily,
           fontWeight: FontWeight.w500,
-          fontSize: AppSizes.sp21,
+          fontSize: AppSizes.sp(21),
           color: DarkColors.textTertiaryColor,
         ),
         headlineMedium: TextStyle(
           fontFamily: _fontFamily,
           fontWeight: FontWeight.w300,
-          fontSize: AppSizes.sp17,
+          fontSize: AppSizes.sp(17),
           color: DarkColors.textSecondaryColor,
         ),
         headlineSmall: TextStyle(
           fontFamily: _fontFamily,
           fontWeight: FontWeight.w500,
-          fontSize: AppSizes.sp15,
+          fontSize: AppSizes.sp(15),
           color: DarkColors.textSecondaryColor,
         ),
         labelMedium: TextStyle(
           fontFamily: _fontFamily,
           fontWeight: FontWeight.w500,
-          fontSize: AppSizes.sp17,
+          fontSize: AppSizes.sp(17),
           color: DarkColors.textSecondaryColor,
         ),
 
@@ -164,7 +164,7 @@ class AppTheme {
         hintStyle: TextStyle(
           fontFamily: _fontFamily,
           fontWeight: FontWeight.w400,
-          fontSize: AppSizes.sp15,
+          fontSize: AppSizes.sp(15),
           color: DarkColors.textHintColor,
         ),
         focusedBorder: OutlineInputBorder(
@@ -187,7 +187,7 @@ class AppTheme {
           textStyle: TextStyle(
             fontFamily: _fontFamily,
             fontWeight: FontWeight.w500,
-            fontSize: AppSizes.sp21,
+            fontSize: AppSizes.sp(21),
             color: DarkColors.buttonTextColor,
           ),
           backgroundColor: DarkColors.primaryColor,
@@ -202,3 +202,4 @@ class AppTheme {
     );
   }
 }
+

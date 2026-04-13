@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fresh_box/core/constants/app_sizes.dart';
 import 'package:fresh_box/core/enum/payment_method.dart';
 import 'package:fresh_box/core/routing/app_routes.dart';
 import 'package:fresh_box/core/theme/dark_colors.dart';
@@ -22,33 +23,33 @@ class _PaymentScreenState extends State<PaymentScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: 'Payment Method', showActions: false),
+      appBar: CustomAppBar(title: 'payment.method_title'.tr, showActions: false),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 30),
+        padding: EdgeInsets.symmetric(horizontal: AppSizes.w(24), vertical: AppSizes.h(30)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             paymentItem(
-              cardType: 'Mastercard',
+              cardType: 'payment.method.mastercard'.tr,
               method: PaymentMethod.mastercard,
               paymentMethodImage: 'assets/images/mastercard.svg',
             ),
-            SizedBox(height: 20),
+            SizedBox(height: AppSizes.h(20)),
             paymentItem(
-              cardType: 'Visa Card',
+              cardType: 'payment.method.visa'.tr,
               method: PaymentMethod.visa,
               paymentMethodImage: 'assets/images/visa.svg',
             ),
-            SizedBox(height: 20),
+            SizedBox(height: AppSizes.h(20)),
 
             paymentItem(
-              cardType: 'PayPal',
+              cardType: 'payment.method.paypal'.tr,
               method: PaymentMethod.paypal,
               paymentMethodImage: 'assets/images/paypal.svg',
             ),
-            SizedBox(height: 40),
+            SizedBox(height: AppSizes.h(40)),
             OrderReview(
-              buttonText: '\$17 Pay Now',
+              buttonText: 'payment.pay_now'.tr,
               onPressed: () {
                 Navigator.pushNamed(context, AppRoutes.paymentFailed);
               },
@@ -72,12 +73,12 @@ class _PaymentScreenState extends State<PaymentScreen> {
         });
       },
       child: Container(
-        padding: EdgeInsets.all(25),
-        height: 74,
+        padding: EdgeInsets.all(AppSizes.w(25)),
+        height: AppSizes.h(74),
         width: double.infinity,
         decoration: BoxDecoration(
           color: Get.isDarkMode ? DarkColors.surfaceColor : LightColors.surfaceColor,
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(AppSizes.r(10)),
           boxShadow: [
             BoxShadow(
               color: Get.isDarkMode ? DarkColors.softGreyShadowColor : LightColors.softGreyShadowColor,
@@ -90,7 +91,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
         child: Row(
           children: [
             SvgPicture.asset(paymentMethodImage),
-            SizedBox(width: 20),
+            SizedBox(width: AppSizes.w(20)),
             Text(cardType, style: Theme.of(context).textTheme.headlineMedium),
             Spacer(),
             Icon(

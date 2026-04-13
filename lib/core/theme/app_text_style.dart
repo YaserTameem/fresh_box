@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 class AppTextStyle {
   static TextStyle discountStyle = TextStyle(
     fontFamily: 'Montserrat',
-    fontSize: AppSizes.sp12,
+    fontSize: AppSizes.sp(12),
     fontWeight: FontWeight.w500,
     color: Get.isDarkMode ? DarkColors.surfaceColor : LightColors.surfaceColor,
   );
@@ -15,8 +15,9 @@ class AppTextStyle {
   static TextStyle discStyle = TextStyle(
     fontFamily: 'Montserrat',
     fontWeight: FontWeight.w300,
-    fontSize: AppSizes.sp13,
+    fontSize: AppSizes.sp(13),
     color: Get.isDarkMode ? DarkColors.textSecondaryColor : LightColors.textSecondaryColor,
     overflow: TextOverflow.ellipsis,
   );
 }
+

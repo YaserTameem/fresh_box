@@ -5,8 +5,8 @@ import 'package:fresh_box/core/theme/dark_colors.dart';
 import 'package:fresh_box/core/theme/light_colors.dart';
 import 'package:get/get.dart';
 
-class CustomElevatedButton extends StatelessWidget {
-  const CustomElevatedButton({
+class CustomAuthElevatedButton extends StatelessWidget {
+  const CustomAuthElevatedButton({
     super.key,
     required this.label,
     required this.icon,

@@ -5,24 +5,12 @@ import 'package:fresh_box/core/theme/dark_colors.dart';
 import 'package:fresh_box/core/theme/light_colors.dart';
 import 'package:fresh_box/features/auth/login_screen.dart';
 import 'package:fresh_box/features/onboarding/onboarding_screen.dart';
+import 'package:fresh_box/features/splash/controllers/splash_controller.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends GetView<SplashController> {
   const SplashScreen({super.key});
-
-  @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() {
-    super.initState();
-    Future.delayed(Duration(seconds: 2), () {
-      Get.offAllNamed(AppRoutes.onboarding);
-    });
-  }
 
   @override
   Widget build(BuildContext context) {

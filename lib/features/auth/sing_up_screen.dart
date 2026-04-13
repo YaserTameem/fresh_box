@@ -4,9 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fresh_box/core/constants/app_sizes.dart';
 import 'package:fresh_box/core/theme/dark_colors.dart';
 import 'package:fresh_box/core/theme/light_colors.dart';
-import 'package:fresh_box/core/widget/custom_elevated_button1.dart';
+import 'package:fresh_box/core/widget/custom_elevated_button.dart';
 import 'package:fresh_box/core/widget/custom_text_form_field.dart';
-import 'package:fresh_box/features/auth/components/custom_elevated_button.dart';
+import 'package:fresh_box/features/auth/components/custom_auth_elevated_button.dart';
 import 'package:fresh_box/features/auth/login_screen.dart';
 import 'package:get/get.dart';
 
@@ -67,43 +67,43 @@ class _SingUpScreenState extends State<SingUpScreen> {
           key: _key,
           child: SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: AppSizes.ph24, horizontal: AppSizes.pw24),
+              padding: EdgeInsets.symmetric(vertical: AppSizes.h(24), horizontal: AppSizes.w(24)),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Center(
                     child: Image.asset(
                       'assets/images/logo.png',
-                      height: AppSizes.h22,
-                      width: AppSizes.w114,
+                      height: AppSizes.h(22),
+                      width: AppSizes.w(114),
                     ),
                   ),
-                  SizedBox(height: AppSizes.ph38),
-                  Text('Let’s get Started', style: Theme.of(context).textTheme.headlineLarge),
+                  SizedBox(height: AppSizes.h(38)),
+                  Text('auth.signup.title'.tr, style: Theme.of(context).textTheme.headlineLarge),
                   Text(
-                    'Create an account to continue!',
+                    'auth.signup.subtitle'.tr,
                     style: Theme.of(
                       context,
                     ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w300),
                   ),
-                  SizedBox(height: AppSizes.ph24),
+                  SizedBox(height: AppSizes.h(24)),
                   CustomTextFormField(
                     controller: usernameController,
                     validator: (value) {
                       if (value == null || value.trim().isEmpty) {
-                        return 'Please enter your username';
+                        return 'auth.signup.username.required'.tr;
                       }
                       return null;
                     },
-                    hintText: 'Enter your username',
-                    title: 'Username',
+                    hintText: 'auth.signup.username.hint'.tr,
+                    title: 'auth.signup.username.label'.tr,
                   ),
-                  SizedBox(height: AppSizes.ph20),
+                  SizedBox(height: AppSizes.h(20)),
                   CustomTextFormField(
                     controller: emailController,
                     validator: (value) {
                       if (value == null || value.trim().isEmpty) {
-                        return 'Please enter your email';
+                        return 'auth.signup.email.required'.tr;
                       }
                       // final RegExp passwordRegex = RegExp(r'^(?=.*\d).{8,}$');
                       //
@@ -112,16 +112,16 @@ class _SingUpScreenState extends State<SingUpScreen> {
                       // }
                       return null;
                     },
-                    hintText: 'Enter your email',
-                    title: 'Email Id',
+                    hintText: 'auth.signup.email.hint'.tr,
+                    title: 'auth.signup.email.label'.tr,
                   ),
-                  SizedBox(height: AppSizes.ph20),
+                  SizedBox(height: AppSizes.h(20)),
                   CustomTextFormField(
                     controller: passwordController,
                     isPassword: true,
                     validator: (value) {
                       if (value == null || value.trim().isEmpty) {
-                        return 'Please enter your Password';
+                        return 'auth.signup.password.required'.tr;
                       }
                       // final RegExp passwordRegex = RegExp(r'^(?=.*\d).{8,}$');
                       //
@@ -130,23 +130,23 @@ class _SingUpScreenState extends State<SingUpScreen> {
                       // }
                       return null;
                     },
-                    hintText: 'Enter your password',
-                    title: 'Password',
+                    hintText: 'auth.signup.password.hint'.tr,
+                    title: 'auth.signup.password.label'.tr,
                   ),
-                  SizedBox(height: AppSizes.ph30),
-                  CustomElevatedButton1(
-                    text: 'Sing Up',
+                  SizedBox(height: AppSizes.h(30)),
+                  CustomElevatedButton(
+                    text: 'auth.signup.submit'.tr,
                     onPressed: () {
                       if (_key.currentState!.validate()) {
                         showOTPDialog(context);
                       }
                     },
                   ),
-                  SizedBox(height: AppSizes.ph20),
+                  SizedBox(height: AppSizes.h(20)),
                   Center(
                     child: RichText(
                       text: TextSpan(
-                        text: 'Already have an account? ',
+                        text: 'auth.signup.have_account'.tr,
                         style: Theme.of(context).textTheme.headlineMedium,
                         children: [
                           TextSpan(),
@@ -159,7 +159,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                                       MaterialPageRoute(builder: (context) => LoginScreen()),
                                     );
                                   },
-                            text: 'Sign In',
+                            text: 'auth.signup.sign_in'.tr,
                             style: Theme.of(context).textTheme.labelMedium?.copyWith(
                               color: Get.isDarkMode ? DarkColors.primaryColor : LightColors.primaryColor,
                             ),
@@ -168,17 +168,17 @@ class _SingUpScreenState extends State<SingUpScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(height: AppSizes.ph20),
-                  CustomElevatedButton(
-                    label: 'Continue With Google',
+                  SizedBox(height: AppSizes.h(20)),
+                  CustomAuthElevatedButton(
+                    label: 'auth.signup.continue_google'.tr,
                     icon: 'assets/images/google_icon.svg',
                     backgroundColor:
                         Get.isDarkMode ? DarkColors.buttonTextColor : LightColors.buttonTextColor,
                   ),
-                  SizedBox(height: AppSizes.ph20),
-                  CustomElevatedButton(
+                  SizedBox(height: AppSizes.h(20)),
+                  CustomAuthElevatedButton(
                     isFacebook: true,
-                    label: 'Continue With Facebook',
+                    label: 'auth.signup.continue_facebook'.tr,
                     icon: 'assets/images/facebook_icon.svg',
                     backgroundColor:
                         Get.isDarkMode ? DarkColors.accentBlueColor : LightColors.accentBlueColor,
@@ -197,13 +197,13 @@ class _SingUpScreenState extends State<SingUpScreen> {
       context: context,
       builder: (context) {
         return SimpleDialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppSizes.r(12))),
           backgroundColor: Get.isDarkMode ? DarkColors.surfaceColor : LightColors.surfaceColor,
-          contentPadding: EdgeInsets.all(AppSizes.pw21),
+          contentPadding: EdgeInsets.all(AppSizes.w(21)),
           title: Text(
-            'OTP Authentication',
+            'auth.otp.title'.tr,
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-              fontSize: AppSizes.sp21,
+              fontSize: AppSizes.sp(21),
               color: Get.isDarkMode ? DarkColors.dialogTitleColor : LightColors.dialogTitleColor,
             ),
           ),
@@ -216,15 +216,15 @@ class _SingUpScreenState extends State<SingUpScreen> {
                     context,
                   ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w300),
                 ),
-                SizedBox(height: AppSizes.h30),
+                SizedBox(height: AppSizes.h(30)),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: List.generate(length, (index) {
                     return SizedBox(
-                      width: AppSizes.w48,
-                      height: AppSizes.h48,
+                      width: AppSizes.w(48),
+                      height: AppSizes.h(48),
                       child: Padding(
-                        padding: EdgeInsets.only(right: AppSizes.pw10),
+                        padding: EdgeInsets.only(right: AppSizes.w(10)),
                         child: TextField(
                           controller: controllers[index],
                           focusNode: focusNode[index],
@@ -236,28 +236,28 @@ class _SingUpScreenState extends State<SingUpScreen> {
                           decoration: InputDecoration(
                             counterText: '',
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
+                              borderRadius: BorderRadius.circular(AppSizes.r(8)),
                               borderSide: BorderSide(
                                 color:
                                     Get.isDarkMode ? DarkColors.primaryColor : LightColors.primaryColor,
                               ),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
+                              borderRadius: BorderRadius.circular(AppSizes.r(8)),
                               borderSide: BorderSide(
                                 color:
                                     Get.isDarkMode ? DarkColors.primaryColor : LightColors.primaryColor,
-                                width: 2,
+                              width: AppSizes.w(2),
                               ),
                             ),
                             enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
+                              borderRadius: BorderRadius.circular(AppSizes.r(8)),
                               borderSide: BorderSide(
                                 color:
                                     Get.isDarkMode
                                         ? DarkColors.cardBackground
                                         : LightColors.cardBackground,
-                                width: 1,
+                                width: AppSizes.w(1),
                               ),
                             ),
                           ),
@@ -266,11 +266,11 @@ class _SingUpScreenState extends State<SingUpScreen> {
                     );
                   }),
                 ),
-                SizedBox(height: AppSizes.ph20),
+                SizedBox(height: AppSizes.h(20)),
                 Center(
                   child: RichText(
                     text: TextSpan(
-                      text: 'Didn’t receive code. ',
+                      text: 'auth.otp.no_code'.tr,
                       style: Theme.of(
                         context,
                       ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w300),
@@ -285,7 +285,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                                     MaterialPageRoute(builder: (context) => LoginScreen()),
                                   );
                                 },
-                          text: 'Resend (51s)',
+                          text: 'auth.otp.resend'.tr,
                           style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                             color: Get.isDarkMode ? DarkColors.primaryColor : LightColors.primaryColor,
                           ),
@@ -294,8 +294,8 @@ class _SingUpScreenState extends State<SingUpScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: AppSizes.ph50),
-                CustomElevatedButton1(text: 'Continue', onPressed: () {}),
+                SizedBox(height: AppSizes.h(50)),
+                CustomElevatedButton(text: 'common.continue'.tr, onPressed: () {}),
               ],
             ),
           ],
@@ -304,3 +304,4 @@ class _SingUpScreenState extends State<SingUpScreen> {
     );
   }
 }
+

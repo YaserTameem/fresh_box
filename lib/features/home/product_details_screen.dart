@@ -34,7 +34,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         },
       ),
       bottomNavigationBar: Padding(
-        padding: EdgeInsets.symmetric(horizontal: AppSizes.pw24, vertical: AppSizes.ph12),
+        padding: EdgeInsets.symmetric(horizontal: AppSizes.w(24), vertical: AppSizes.h(12)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -45,15 +45,15 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   onTap: () {},
                   child: Container(
                     alignment: Alignment.center,
-                    height: AppSizes.h30,
-                    width: AppSizes.w30,
+                    height: AppSizes.h(30),
+                    width: AppSizes.w(30),
                     decoration: BoxDecoration(
                       color: Get.isDarkMode ? DarkColors.cardBackground : LightColors.cardBackground,
                       borderRadius: AppRadius.small,
                     ),
                     child: Container(
-                      height: AppSizes.h2,
-                      width: AppSizes.w10,
+                      height: AppSizes.h(2),
+                      width: AppSizes.w(10),
                       color: Get.isDarkMode ? DarkColors.textBodyColor : LightColors.textBodyColor,
                     ),
                   ),
@@ -68,15 +68,15 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   onTap: () {},
                   child: Container(
                     alignment: Alignment.center,
-                    height: AppSizes.h30,
-                    width: AppSizes.w30,
+                    height: AppSizes.h(30),
+                    width: AppSizes.w(30),
                     decoration: BoxDecoration(
                       color: Get.isDarkMode ? DarkColors.cardBackground : LightColors.cardBackground,
                       borderRadius: AppRadius.medium,
                     ),
                     child: Icon(
                       Icons.add,
-                      size: AppSizes.r20,
+                      size: AppSizes.r(20),
                       color: Get.isDarkMode ? DarkColors.textBodyColor : LightColors.textBodyColor,
                     ),
                   ),
@@ -85,10 +85,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             ),
 
             ElevatedButton(
-              style: ElevatedButton.styleFrom(fixedSize: Size(AppSizes.w184, AppSizes.h50)),
+              style: ElevatedButton.styleFrom(fixedSize: Size(AppSizes.w(184), AppSizes.h(50))),
               onPressed: () {},
               child: Text(
-                'Add to Cart',
+                'product_details.add_to_cart'.tr,
                 style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                   color: Get.isDarkMode ? DarkColors.buttonTextColor : LightColors.buttonTextColor,
                 ),
@@ -99,20 +99,20 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: AppSizes.pw24, vertical: AppSizes.ph24),
+          padding: EdgeInsets.symmetric(horizontal: AppSizes.w(24), vertical: AppSizes.h(24)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(AppSizes.r(20)),
                 child: Image.asset(
                   'assets/images/sandwitch.png',
-                  height: AppSizes.h200,
+                  height: AppSizes.h(200),
                   width: double.infinity,
                   fit: BoxFit.cover,
                 ),
               ),
-              SizedBox(height: AppSizes.ph30),
+              SizedBox(height: AppSizes.h(30)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -130,12 +130,12 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     '\$12',
                     style: Theme.of(context).textTheme.headlineLarge!.copyWith(
                       color: Get.isDarkMode ? DarkColors.primaryColor : LightColors.primaryColor,
-                      fontSize: AppSizes.sp27,
+                      fontSize: AppSizes.sp(27),
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: AppSizes.ph4),
+              SizedBox(height: AppSizes.h(4)),
               Text(
                 'Lorem ipsum et dolor sit amet, and consectetur eadipiscing elit. Ametmo magna the cursus yum dolor praesenta the  pulvinar tristique the food.',
                 style: Theme.of(context).textTheme.headlineSmall!.copyWith(
@@ -143,8 +143,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   fontWeight: FontWeight.w300,
                 ),
               ),
-              SizedBox(height: AppSizes.ph4),
-              Text('Reviews', style: Theme.of(context).textTheme.labelMedium),
+              SizedBox(height: AppSizes.h(4)),
+              Text('product_details.reviews'.tr, style: Theme.of(context).textTheme.labelMedium),
               ConstrainedBox(
                 constraints: BoxConstraints(maxHeight: 80),
                 child: ListView.separated(
@@ -153,11 +153,11 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     return Row(
                       children: [
                         ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(AppSizes.r(10)),
                           child: Image.asset(
                             'assets/images/avatar.png',
-                            width: AppSizes.w52,
-                            height: AppSizes.h50,
+                            width: AppSizes.w(52),
+                            height: AppSizes.h(50),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -165,20 +165,23 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     );
                   },
                   separatorBuilder: (context, index) {
-                    return SizedBox(width: AppSizes.pw16);
+                    return SizedBox(width: AppSizes.w(16));
                   },
                   itemCount: 5,
                 ),
               ),
-              SizedBox(height: AppSizes.ph30),
-              Text('Add Instructions', style: Theme.of(context).textTheme.labelMedium),
-              SizedBox(height: AppSizes.ph12),
+              SizedBox(height: AppSizes.h(30)),
+              Text(
+                'product_details.add_instructions'.tr,
+                style: Theme.of(context).textTheme.labelMedium,
+              ),
+              SizedBox(height: AppSizes.h(12)),
               TextField(
                 controller: instructionsController,
                 style: Theme.of(context).textTheme.labelMedium,
                 maxLines: 4,
                 decoration: InputDecoration(
-                  hintText: 'Write Instructions',
+                  hintText: 'product_details.instructions_hint'.tr,
                   hintStyle: Theme.of(context).textTheme.labelMedium!.copyWith(
                     color: Get.isDarkMode ? DarkColors.textHintColor : LightColors.textHintColor,
                   ),
@@ -193,3 +196,4 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     );
   }
 }
+

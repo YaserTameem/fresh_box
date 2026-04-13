@@ -3,8 +3,8 @@ import 'package:fresh_box/core/theme/dark_colors.dart';
 import 'package:fresh_box/core/theme/light_colors.dart';
 import 'package:get/get.dart';
 
-class CustomElevatedButton1 extends StatelessWidget {
-  const CustomElevatedButton1({super.key, required this.text, required this.onPressed, this.color});
+class CustomElevatedButton extends StatelessWidget {
+  const CustomElevatedButton({super.key, required this.text, required this.onPressed, this.color});
 
   final String text;
 

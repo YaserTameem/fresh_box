@@ -19,18 +19,18 @@ class OrderReview extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Order Review', style: Theme.of(context).textTheme.labelMedium),
-        SizedBox(height: AppSizes.ph24),
+        Text('order_review.title'.tr, style: Theme.of(context).textTheme.labelMedium),
+        SizedBox(height: AppSizes.h(24)),
         CustomListTile(title: 'Full Vegie Salad (1 items)', trailing: '\$10'),
         CustomListTile(title: 'Toasted Sandwich (1 items)', trailing: '\$10'),
-        CustomListTile(title: 'Delivery Fee', trailing: '\$5'),
-        CustomListTile(title: 'Discount', trailing: '\$-8'),
-        SizedBox(height: AppSizes.ph16),
+        CustomListTile(title: 'order_review.delivery_fee'.tr, trailing: '\$5'),
+        CustomListTile(title: 'order_review.discount'.tr, trailing: '\$-8'),
+        SizedBox(height: AppSizes.h(16)),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'Total Price',
+              'order_review.total_price'.tr,
               style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                 color: Get.isDarkMode ? DarkColors.textPrimaryColor : LightColors.textPrimaryColor,
               ),
@@ -43,19 +43,24 @@ class OrderReview extends StatelessWidget {
             ),
           ],
         ),
-        SizedBox(height: 40),
+        SizedBox(height: AppSizes.h(40)),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
             shape: RoundedRectangleBorder(borderRadius: AppRadius.small),
-            fixedSize: Size(MediaQuery.of(context).size.width, AppSizes.h50),
+            fixedSize: Size(MediaQuery.of(context).size.width, AppSizes.h(50)),
           ),
           onPressed: onPressed,
           child: Text(
             buttonText,
-            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 21.sp, fontFamily: "Montserrat"),
+            style: TextStyle(
+              fontWeight: FontWeight.w500,
+              fontSize: AppSizes.sp(21),
+              fontFamily: "Montserrat",
+            ),
           ),
         ),
       ],
     );
   }
 }
+

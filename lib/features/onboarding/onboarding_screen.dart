@@ -4,54 +4,29 @@ import 'package:fresh_box/core/constants/app_sizes.dart';
 import 'package:fresh_box/core/routing/app_routes.dart';
 import 'package:fresh_box/core/theme/dark_colors.dart';
 import 'package:fresh_box/core/theme/light_colors.dart';
-import 'package:fresh_box/features/auth/login_screen.dart';
+import 'package:fresh_box/features/onboarding/controllers/onboarding_controller.dart';
 import 'package:fresh_box/features/onboarding/onboarding_model.dart';
 import 'package:get/get.dart';
 
-class OnboardingScreen extends StatefulWidget {
+class OnboardingScreen extends GetView<OnboardingController> {
   const OnboardingScreen({super.key});
-
-  @override
-  State<OnboardingScreen> createState() => _OnboardingScreenState();
-}
-
-class _OnboardingScreenState extends State<OnboardingScreen> {
-  late PageController pageController;
-  int currentPage = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    pageController = PageController();
-  }
-
-  @override
-  void dispose() {
-    pageController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: AppSizes.pw12),
+          padding: EdgeInsets.symmetric(horizontal: AppSizes.w(12)),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-
             children: [
               SvgPicture.asset('assets/images/onboarding_logo.svg'),
-              SizedBox(height: AppSizes.h72),
+              SizedBox(height: AppSizes.h(72)),
               SizedBox(
-                height: AppSizes.h495,
+                height: AppSizes.h(495),
                 child: PageView.builder(
-                  onPageChanged: (value) {
-                    setState(() {
-                      currentPage = value;
-                    });
-                  },
-                  controller: pageController,
+                  onPageChanged: controller.onPageChange,
+                  controller: controller.pageController,
                   itemCount: OnboardingModel.onboardingData.length,
                   physics: BouncingScrollPhysics(),
                   itemBuilder: (context, index) {
@@ -60,7 +35,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Image.asset(item.image),
-                        SizedBox(height: AppSizes.h30),
+                        SizedBox(height: AppSizes.h(30)),
                         Text(
                           item.title,
                           style: Theme.of(context).textTheme.headlineLarge?.copyWith(
@@ -68,10 +43,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 Get.isDarkMode
                                     ? DarkColors.textPrimaryColor
                                     : LightColors.textPrimaryColor,
-                            fontSize: AppSizes.sp27,
+                            fontSize: AppSizes.sp(27),
                           ),
                         ),
-                        SizedBox(height: AppSizes.h20),
+                        SizedBox(height: AppSizes.h(20)),
                         Text(
                           textAlign: TextAlign.center,
                           item.supTitle,
@@ -84,18 +59,18 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   },
                 ),
               ),
-              SizedBox(height: AppSizes.ph24),
+              SizedBox(height: AppSizes.h(24)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: List.generate(OnboardingModel.onboardingData.length, (index) {
-                  final isCurrentPage = index == currentPage;
+                  final isCurrentPage = index == controller.currentPage.value;
                   return AnimatedContainer(
-                    margin: EdgeInsets.symmetric(horizontal: AppSizes.pw8),
+                    margin: EdgeInsets.symmetric(horizontal: AppSizes.w(8)),
                     duration: Duration(milliseconds: 300),
-                    height: AppSizes.h8,
-                    width: isCurrentPage ? AppSizes.w20 : AppSizes.w8,
+                    height: AppSizes.h(8),
+                    width: isCurrentPage ? AppSizes.w(20) : AppSizes.w(8),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(AppSizes.r(20)),
                       color:
                           isCurrentPage
                               ? Get.isDarkMode
@@ -108,21 +83,24 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   );
                 }),
               ),
-              SizedBox(height: AppSizes.ph20),
+              SizedBox(height: AppSizes.h(20)),
               Visibility(
-                visible: currentPage == OnboardingModel.onboardingData.length - 1,
+                visible: controller.currentPage.value == OnboardingModel.onboardingData.length - 1,
                 replacement: Row(
                   children: [
                     Expanded(
                       child: TextButton(
                         onPressed: () {
-                          pageController.animateToPage(
+                          controller.pageController.animateToPage(
                             OnboardingModel.onboardingData.length - 1,
                             duration: Duration(milliseconds: 300),
                             curve: Curves.easeInOut,
                           );
                         },
-                        child: Text('Skip', style: Theme.of(context).textTheme.labelMedium),
+                        child: Text(
+                          'onboarding.skip'.tr,
+                          style: Theme.of(context).textTheme.labelMedium,
+                        ),
                       ),
                     ),
                     Expanded(
@@ -132,19 +110,21 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               Get.isDarkMode
                                   ? DarkColors.textPrimaryColor
                                   : LightColors.textPrimaryColor,
-                          fixedSize: Size(AppSizes.w154, AppSizes.h50),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                          fixedSize: Size(AppSizes.w(154), AppSizes.h(50)),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(AppSizes.r(10)),
+                          ),
                         ),
                         onPressed: () {
-                          if (currentPage < OnboardingModel.onboardingData.length - 1) {
-                            pageController.nextPage(
+                          if (controller.currentPage.value < OnboardingModel.onboardingData.length - 1) {
+                            controller.pageController.nextPage(
                               duration: Duration(milliseconds: 300),
                               curve: Curves.easeInOut,
                             );
                           }
                         },
                         child: Text(
-                          'Next',
+                          'onboarding.next'.tr,
                           style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                             color:
                                 Get.isDarkMode
@@ -160,14 +140,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor:
                         Get.isDarkMode ? DarkColors.textSecondaryColor : LightColors.textSecondaryColor,
-                    fixedSize: Size(MediaQuery.of(context).size.width, AppSizes.h50),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                    fixedSize: Size(MediaQuery.of(context).size.width, AppSizes.h(50)),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppSizes.r(10))),
                   ),
                   onPressed: () {
                     Navigator.pushNamed(context, AppRoutes.login);
                   },
                   child: Text(
-                    'Get Started',
+                    'onboarding.get_started'.tr,
                     style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                       color: Get.isDarkMode ? DarkColors.buttonTextColor : LightColors.buttonTextColor,
                     ),

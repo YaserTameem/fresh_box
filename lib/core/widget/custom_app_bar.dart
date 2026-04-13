@@ -28,7 +28,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: AppSizes.pw21),
+      padding: EdgeInsets.symmetric(horizontal: AppSizes.w(21)),
       child: AppBar(
         centerTitle: centerTitle,
         leading:
@@ -60,8 +60,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   shape: RoundedRectangleBorder(borderRadius: AppRadius.medium),
                   elevation: 2,
                   child: SizedBox(
-                    height: AppSizes.h48,
-                    width: AppSizes.w48,
+                    height: AppSizes.h(48),
+                    width: AppSizes.w(48),
                     child: Icon(icon ?? Icons.search_outlined),
                   ),
                 ),
@@ -75,3 +75,4 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => Size.fromHeight(kToolbarHeight);
 }
+

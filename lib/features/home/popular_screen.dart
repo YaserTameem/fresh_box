@@ -7,16 +7,16 @@ import 'package:fresh_box/features/cart/cart_screen.dart';
 import 'package:fresh_box/features/home/components/section_header.dart';
 import 'package:fresh_box/features/home/components/sliver_home_grid.dart';
 import 'package:fresh_box/features/home/components/sliver_home_list.dart';
+import 'package:get/get.dart';
 
 class PopularScreen extends StatelessWidget {
-
   const PopularScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'Popular Food',
+        title: 'home.section.popular_food'.tr,
         onTap: () {
           Navigator.pop(context);
         },
@@ -24,7 +24,9 @@ class PopularScreen extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverHomeGrid(),
-          SliverToBoxAdapter(child: SectionHeader(title: 'Recommended', onPressed: () {})),
+          SliverToBoxAdapter(
+            child: SectionHeader(title: 'home.section.recommended'.tr, onPressed: () {}),
+          ),
           SliverHomeList(),
         ],
       ),

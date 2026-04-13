@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fresh_box/core/constants/app_sizes.dart';
+import 'package:fresh_box/core/localization/localization_service.dart';
 import 'package:fresh_box/core/routing/app_routes.dart';
+import 'package:fresh_box/core/services/language_service.dart';
 import 'package:fresh_box/core/services/theme_service.dart';
 import 'package:fresh_box/core/theme/app_text_style.dart';
 import 'package:fresh_box/core/theme/dark_colors.dart';
@@ -26,6 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
   late TextEditingController searchController;
   late PageController pageController;
   final themeService = Get.find<ThemeService>();
+  final languageService = Get.find<LanguageService>();
 
   @override
   void initState() {
@@ -45,37 +48,57 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             children: [
               ListTile(
-                contentPadding: EdgeInsets.symmetric(horizontal: AppSizes.pw24, vertical: AppSizes.ph14),
+                contentPadding: EdgeInsets.symmetric(horizontal: AppSizes.w(24), vertical: AppSizes.h(14)),
                 title: Text(
-                  'Your Location',
+                  'home.location_label'.tr,
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     color:
                         Get.isDarkMode
                             ? DarkColors.secondaryLabelColor
                             : LightColors.secondaryLabelColor,
-                    fontSize: AppSizes.sp13,
+                    fontSize: AppSizes.sp(13),
                   ),
                 ),
                 subtitle: Text(
                   '9224 Jailyn Terrace, block 2',
                   style: Theme.of(context).textTheme.labelMedium,
                 ),
-                trailing: Obx(
-                  () => IconButton(
-                    onPressed: themeService.toggleTheme,
-                    icon: Icon(themeService.isDarkMode ? Icons.light_mode : Icons.dark_mode),
+                trailing: Image.asset('assets/images/profile_ph.png'),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  IconButton(
+                    onPressed: () async {
+                      final newLocale =
+                          languageService.isArabic
+                              ? LocalizationService.englishLocale
+                              : LocalizationService.arabicLocale;
+                      await languageService.changeLanguage(newLocale);
+                    },
+                    icon: const Icon(Icons.language),
                   ),
-                ),
-                // Image.asset('assets/images/profile_ph.png'),
+                  Obx(
+                    () => IconButton(
+                      onPressed: themeService.toggleTheme,
+                      icon: Icon(themeService.isDarkMode ? Icons.light_mode : Icons.dark_mode),
+                    ),
+                  ),
+                ],
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 6, left: 25, right: 25, bottom: 26),
+                padding: EdgeInsets.only(
+                  top: AppSizes.h(6),
+                  left: AppSizes.w(25),
+                  right: AppSizes.w(25),
+                  bottom: AppSizes.h(26),
+                ),
                 child: TextField(
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Get.isDarkMode ? DarkColors.cardBackground : LightColors.cardBackground,
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(AppSizes.r10)),
-                    hintText: 'what do you want to eat?',
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(AppSizes.r(10))),
+                    hintText: 'home.search_hint'.tr,
                     hintStyle: Theme.of(
                       context,
                     ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w300),
@@ -87,17 +110,17 @@ class _HomeScreenState extends State<HomeScreen> {
                               : LightColors.textSecondaryColor,
                     ),
                     contentPadding: EdgeInsets.only(
-                      left: AppSizes.pw14,
-                      right: AppSizes.pw14,
-                      bottom: AppSizes.ph14,
+                      left: AppSizes.w(14),
+                      right: AppSizes.w(14),
+                      bottom: AppSizes.h(14),
                     ),
                     suffixIcon: GestureDetector(
                       onTap: () {},
                       child: Container(
-                        margin: EdgeInsets.all(AppSizes.pw6),
+                        margin: EdgeInsets.all(AppSizes.w(6)),
                         decoration: BoxDecoration(
                           color: Get.isDarkMode ? DarkColors.surfaceColor : LightColors.surfaceColor,
-                          borderRadius: BorderRadius.circular(AppSizes.r10),
+                          borderRadius: BorderRadius.circular(AppSizes.r(10)),
                         ),
                         child: Icon(
                           Icons.mic_rounded,
@@ -112,10 +135,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               SizedBox(
-                height: AppSizes.ph40,
+                height: AppSizes.h(40),
                 child: ListView.separated(
                   physics: BouncingScrollPhysics(),
-                  padding: EdgeInsets.only(left: AppSizes.pw24),
+                  padding: EdgeInsetsDirectional.only(start: AppSizes.w(24)),
                   itemCount: catgoriy.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
@@ -140,15 +163,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w300),
                             ),
                             if (isSelected) ...[
-                              SizedBox(height: AppSizes.ph8),
+                              SizedBox(height: AppSizes.h(8)),
                               Container(
-                                height: 2,
+                                height: AppSizes.h(2),
                                 decoration: BoxDecoration(
                                   color:
                                       Get.isDarkMode
                                           ? DarkColors.textPrimaryColor
                                           : LightColors.textPrimaryColor,
-                                  borderRadius: BorderRadius.circular(AppSizes.r10),
+                                  borderRadius: BorderRadius.circular(AppSizes.r(10)),
                                 ),
                               ),
                             ],
@@ -158,20 +181,20 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   },
                   separatorBuilder: (BuildContext context, int index) {
-                    return SizedBox(width: AppSizes.pw14);
+                    return SizedBox(width: AppSizes.w(14));
                   },
                 ),
               ),
-              SizedBox(height: AppSizes.ph30),
+              SizedBox(height: AppSizes.h(30)),
               SizedBox(
-                height: AppSizes.h112,
+                height: AppSizes.h(112),
                 child: ListView.separated(
-                  padding: EdgeInsets.only(left: AppSizes.pw24),
+                  padding: EdgeInsets.only(left: AppSizes.w(24)),
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
                     return SizedBox(
-                      height: 111.h,
-                      width: 81,
+                      height: AppSizes.h(111),
+                      width: AppSizes.w(81),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -180,28 +203,31 @@ class _HomeScreenState extends State<HomeScreen> {
                               decoration: BoxDecoration(
                                 color:
                                     Get.isDarkMode ? DarkColors.surfaceColor : LightColors.surfaceColor,
-                                borderRadius: BorderRadius.circular(10.r),
+                                borderRadius: BorderRadius.circular(AppSizes.r(10)),
                               ),
-                              height: 81.h,
-                              width: 81.w,
+                              height: AppSizes.h(81),
+                              width: AppSizes.w(81),
                               child: Image.asset('assets/images/item_1.png', fit: BoxFit.cover),
                             ),
                           ),
-                          SizedBox(height: AppSizes.ph8),
-                          Text('Breakfast', style: Theme.of(context).textTheme.headlineSmall),
+                          SizedBox(height: AppSizes.h(8)),
+                          Text(
+                            'home.category.breakfast'.tr,
+                            style: Theme.of(context).textTheme.headlineSmall,
+                          ),
                         ],
                       ),
                     );
                   },
                   separatorBuilder: (context, index) {
-                    return SizedBox(width: AppSizes.pw21);
+                    return SizedBox(width: AppSizes.w(21));
                   },
                   itemCount: 4,
                 ),
               ),
-              SizedBox(height: AppSizes.ph30),
+              SizedBox(height: AppSizes.h(30)),
               SizedBox(
-                height: AppSizes.h212,
+                height: AppSizes.h(212),
                 child: PageView.builder(
                   onPageChanged: (index) {
                     setState(() {
@@ -241,7 +267,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                 ],
                               ),
-                              SizedBox(width: AppSizes.pw14),
+                              SizedBox(width: AppSizes.w(14)),
                               Text(
                                 '\$8.99',
                                 style: Theme.of(context).textTheme.headlineLarge?.copyWith(
@@ -259,52 +285,52 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                 ),
               ),
-              SizedBox(height: AppSizes.ph30),
+              SizedBox(height: AppSizes.h(30)),
               SectionHeader(
-                title: 'Popular Food',
+                title: 'home.section.popular_food'.tr,
                 onPressed: () {
                   Navigator.pushNamed(context, AppRoutes.popular);
                 },
               ),
-              SizedBox(height: AppSizes.ph16),
+              SizedBox(height: AppSizes.h(16)),
               SizedBox(
-                height: 310.h,
+                height: AppSizes.h(310),
                 child: ListView.separated(
-                  padding: EdgeInsets.symmetric(horizontal: AppSizes.pw24),
+                  padding: EdgeInsets.symmetric(horizontal: AppSizes.w(24)),
                   scrollDirection: Axis.horizontal,
                   itemCount: ProductsModel.products.length,
                   itemBuilder: (BuildContext context, int index) {
                     return Padding(
-                      padding: EdgeInsets.symmetric(vertical: 20.h),
+                      padding: EdgeInsets.symmetric(vertical: AppSizes.h(20)),
                       child: ProductCard(index: index),
                     );
                   },
                   separatorBuilder: (BuildContext context, int index) {
-                    return SizedBox(width: AppSizes.pw16);
+                    return SizedBox(width: AppSizes.w(16));
                   },
                 ),
               ),
-              SizedBox(height: AppSizes.ph30),
+              SizedBox(height: AppSizes.h(30)),
               SectionHeader(
-                title: 'Nearby Restaurant',
+                title: 'home.section.nearby_restaurant'.tr,
                 onPressed: () {
                   Navigator.pushNamed(context, AppRoutes.popular);
                 },
               ),
-              SizedBox(height: AppSizes.ph20),
+              SizedBox(height: AppSizes.h(20)),
               ListView.separated(
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
-                padding: EdgeInsets.symmetric(horizontal: AppSizes.pw24),
+                padding: EdgeInsets.symmetric(horizontal: AppSizes.w(24)),
                 itemCount: 3,
                 itemBuilder: (BuildContext context, int index) {
                   return Container(
-                    padding: EdgeInsets.all(AppSizes.pw12),
-                    height: AppSizes.h222,
-                    width: AppSizes.w325,
+                    padding: EdgeInsets.all(AppSizes.w(12)),
+                    height: AppSizes.h(222),
+                    width: AppSizes.w(325),
                     decoration: BoxDecoration(
                       color: Get.isDarkMode ? DarkColors.surfaceColor : LightColors.surfaceColor,
-                      borderRadius: BorderRadius.circular(AppSizes.r10),
+                      borderRadius: BorderRadius.circular(AppSizes.r(10)),
                     ),
                     child: Column(
                       children: [
@@ -316,10 +342,10 @@ class _HomeScreenState extends State<HomeScreen> {
                               bottom: 14,
                               child: Container(
                                 alignment: Alignment.center,
-                                height: AppSizes.h26,
-                                width: AppSizes.w78,
+                                height: AppSizes.h(26),
+                                width: AppSizes.w(78),
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(AppSizes.r10),
+                                  borderRadius: BorderRadius.circular(AppSizes.r(10)),
                                   color:
                                       Get.isDarkMode
                                           ? DarkColors.surfaceColor
@@ -330,7 +356,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ],
                         ),
-                        SizedBox(height: AppSizes.ph12),
+                        SizedBox(height: AppSizes.h(12)),
                         Row(
                           children: [
                             Text('Salad Factory', style: Theme.of(context).textTheme.labelMedium),
@@ -341,7 +367,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   Get.isDarkMode
                                       ? DarkColors.accentGreenColor
                                       : LightColors.accentGreenColor,
-                              size: AppSizes.r20,
+                              size: AppSizes.r(20),
                             ),
                             Text(
                               '4.5',
@@ -354,7 +380,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ],
                         ),
-                        SizedBox(height: AppSizes.ph6),
+                        SizedBox(height: AppSizes.h(6)),
 
                         Row(
                           children: [
@@ -382,10 +408,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 },
                 separatorBuilder: (BuildContext context, int index) {
-                  return SizedBox(height: AppSizes.ph20);
+                  return SizedBox(height: AppSizes.h(20));
                 },
               ),
-              SizedBox(height: AppSizes.ph38),
+              SizedBox(height: AppSizes.h(38)),
             ],
           ),
         ),
@@ -393,5 +419,11 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  List<String> catgoriy = ['Featured', 'Nearby you', 'Trending', 'Newest'];
+  List<String> catgoriy = [
+    'home.category.featured'.tr,
+    'home.category.nearby'.tr,
+    'home.category.trending'.tr,
+    'home.category.newest'.tr,
+  ];
 }
+

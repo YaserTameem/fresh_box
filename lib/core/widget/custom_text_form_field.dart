@@ -37,14 +37,14 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(widget.title, style: Theme.of(context).textTheme.headlineMedium),
-        SizedBox(height: AppSizes.ph12),
+        SizedBox(height: AppSizes.h(12)),
         TextFormField(
           onChanged: (value) => widget.onChanged!(value),
           controller: widget.controller,
           validator: (value) => widget.validator(value),
           obscureText: widget.isPassword && !_isVisible,
           obscuringCharacter: '*',
-          style: TextStyle(fontSize: 16),
+          style: TextStyle(fontSize: AppSizes.sp(16)),
           decoration: InputDecoration(
             suffix: widget.suffix,
             suffixIcon:
@@ -61,7 +61,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                               : Icon(Icons.visibility_off_outlined),
                     )
                     : null,
-            errorStyle: TextStyle(fontSize: AppSizes.sp14),
+            errorStyle: TextStyle(fontSize: AppSizes.sp(14)),
             hintText: widget.hintText,
             hintStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w300),
             filled: true,
@@ -72,3 +72,4 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
     );
   }
 }
+

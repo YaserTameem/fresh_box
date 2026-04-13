@@ -34,18 +34,21 @@ class _SearchScreenState extends State<SearchScreen> with SingleTickerProviderSt
     return Scaffold(
       appBar: AppBar(
         leadingWidth: 350,
-        actionsPadding: EdgeInsets.only(left: 20, right: 27),
+        actionsPadding: EdgeInsets.only(left: AppSizes.w(20), right: AppSizes.w(27)),
         leading: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
+          padding: EdgeInsets.symmetric(horizontal: AppSizes.w(24)),
           child: TextField(
             decoration: InputDecoration(
               suffixIcon: Icon(Icons.mic_rounded),
               prefixIcon: Icon(Icons.search_outlined),
-              hintText: 'Search',
+              hintText: 'search.hint'.tr,
               border: buildOutlineInputBorder(),
               focusedBorder: buildOutlineInputBorder(),
               enabledBorder: buildOutlineInputBorder(),
-              contentPadding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 16),
+              contentPadding: EdgeInsets.symmetric(
+                horizontal: AppSizes.w(15),
+                vertical: AppSizes.h(16),
+              ),
             ),
           ),
         ),
@@ -65,12 +68,12 @@ class _SearchScreenState extends State<SearchScreen> with SingleTickerProviderSt
       body: Column(
         children: [
           Container(
-            margin: EdgeInsets.symmetric(horizontal: AppSizes.pw24, vertical: AppSizes.ph30),
-            height: AppSizes.h40,
-            width: AppSizes.w325,
+            margin: EdgeInsets.symmetric(horizontal: AppSizes.w(24), vertical: AppSizes.h(30)),
+            height: AppSizes.h(40),
+            width: AppSizes.w(325),
             decoration: BoxDecoration(
               color: Get.isDarkMode ? DarkColors.tabBackgroundColor : LightColors.tabBackgroundColor,
-              borderRadius: BorderRadius.circular(AppSizes.r10),
+              borderRadius: BorderRadius.circular(AppSizes.r(10)),
             ),
             child: TabBar(
               controller: _tabController,
@@ -85,7 +88,7 @@ class _SearchScreenState extends State<SearchScreen> with SingleTickerProviderSt
 
               tabs: [
                 Text(
-                  'Food',
+                  'search.tab.food'.tr,
                   style:
                       currentIndex == 0
                           ? theme.labelMedium
@@ -95,7 +98,7 @@ class _SearchScreenState extends State<SearchScreen> with SingleTickerProviderSt
                           ),
                 ),
                 Text(
-                  'Restaurant',
+                  'search.tab.restaurant'.tr,
                   style:
                       currentIndex == 1
                           ? theme.labelMedium
@@ -135,16 +138,16 @@ class RestaurantListCard extends StatelessWidget {
     return ListView.separated(
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
-      padding: EdgeInsets.symmetric(horizontal: AppSizes.pw24),
+      padding: EdgeInsets.symmetric(horizontal: AppSizes.w(24)),
       itemCount: 3,
       itemBuilder: (BuildContext context, int index) {
         return Container(
-          padding: EdgeInsets.all(AppSizes.pw12),
-          height: AppSizes.h222,
-          width: AppSizes.w325,
+          padding: EdgeInsets.all(AppSizes.w(12)),
+          height: AppSizes.h(222),
+          width: AppSizes.w(325),
           decoration: BoxDecoration(
-            color:Get.isDarkMode?DarkColors.surfaceColor: LightColors.surfaceColor,
-            borderRadius: BorderRadius.circular(AppSizes.r10),
+            color: Get.isDarkMode ? DarkColors.surfaceColor : LightColors.surfaceColor,
+            borderRadius: BorderRadius.circular(AppSizes.r(10)),
           ),
           child: Column(
             children: [
@@ -156,47 +159,51 @@ class RestaurantListCard extends StatelessWidget {
                     bottom: 14,
                     child: Container(
                       alignment: Alignment.center,
-                      height: AppSizes.h26,
-                      width: AppSizes.w78,
+                      height: AppSizes.h(26),
+                      width: AppSizes.w(78),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(AppSizes.r10),
-                        color:Get.isDarkMode?DarkColors.surfaceColor: LightColors.surfaceColor,
+                        borderRadius: BorderRadius.circular(AppSizes.r(10)),
+                        color: Get.isDarkMode ? DarkColors.surfaceColor : LightColors.surfaceColor,
                       ),
                       child: Text('1.2 Km', style: theme.headlineSmall),
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: AppSizes.ph12),
+              SizedBox(height: AppSizes.h(12)),
               Row(
                 children: [
                   Text('Salad Factory', style: theme.labelMedium),
                   Spacer(),
-                  Icon(Icons.star, color:Get.isDarkMode?DarkColors.accentGreenColor: LightColors.accentGreenColor, size: AppSizes.r20),
+                  Icon(
+                    Icons.star,
+                    color: Get.isDarkMode ? DarkColors.accentGreenColor : LightColors.accentGreenColor,
+                    size: AppSizes.r(20),
+                  ),
                   Text(
                     '4.5',
-                    style: Theme.of(
-                      context,
-                    ).textTheme.headlineSmall!.copyWith(color:Get.isDarkMode?DarkColors.accentGreenColor: LightColors.accentGreenColor),
+                    style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                      color: Get.isDarkMode ? DarkColors.accentGreenColor : LightColors.accentGreenColor,
+                    ),
                   ),
                 ],
               ),
-              SizedBox(height: AppSizes.ph6),
+              SizedBox(height: AppSizes.h(6)),
 
               Row(
                 children: [
                   Text(
                     '2464 Royal Ln. Mesa',
-                    style: Theme.of(
-                      context,
-                    ).textTheme.headlineSmall?.copyWith(color:Get.isDarkMode?DarkColors.addressTextColor: LightColors.addressTextColor),
+                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                      color: Get.isDarkMode ? DarkColors.addressTextColor : LightColors.addressTextColor,
+                    ),
                   ),
                   Spacer(),
                   Text(
                     'Open at 10:00 AM',
-                    style: Theme.of(
-                      context,
-                    ).textTheme.headlineSmall?.copyWith(color:Get.isDarkMode?DarkColors.primaryColor: LightColors.primaryColor),
+                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                      color: Get.isDarkMode ? DarkColors.primaryColor : LightColors.primaryColor,
+                    ),
                   ),
                 ],
               ),
@@ -205,7 +212,7 @@ class RestaurantListCard extends StatelessWidget {
         );
       },
       separatorBuilder: (BuildContext context, int index) {
-        return SizedBox(height: AppSizes.ph20);
+        return SizedBox(height: AppSizes.h(20));
       },
     );
   }
@@ -217,12 +224,12 @@ class FoodListCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      padding: EdgeInsets.symmetric(horizontal: 25),
+      padding: EdgeInsets.symmetric(horizontal: AppSizes.w(25)),
 
       itemBuilder: (context, index) {
         return Container(
-          padding: EdgeInsets.all(AppSizes.pw12),
-          height: AppSizes.h114,
+          padding: EdgeInsets.all(AppSizes.w(12)),
+          height: AppSizes.h(114),
           decoration: BoxDecoration(
             color: Get.isDarkMode ? DarkColors.surfaceColor : LightColors.surfaceColor,
             borderRadius: AppRadius.medium,
@@ -241,7 +248,7 @@ class FoodListCard extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(width: AppSizes.pw14),
+              SizedBox(width: AppSizes.w(14)),
               Expanded(
                 flex: 2,
                 child: Column(
@@ -253,7 +260,7 @@ class FoodListCard extends StatelessWidget {
                       '\$10',
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
-                        fontSize: AppSizes.sp21,
+                        fontSize: AppSizes.sp(21),
                         color: Get.isDarkMode ? DarkColors.primaryColor : LightColors.primaryColor,
                       ),
                     ),
@@ -275,9 +282,9 @@ class FoodListCard extends StatelessWidget {
                                   Get.isDarkMode
                                       ? DarkColors.accentGreenColor
                                       : LightColors.accentGreenColor,
-                              size: AppSizes.r20,
+                              size: AppSizes.r(20),
                             ),
-                            SizedBox(width: AppSizes.pw12),
+                            SizedBox(width: AppSizes.w(12)),
                             Text(
                               '4.5',
                               style: Theme.of(context).textTheme.headlineSmall!.copyWith(
@@ -295,7 +302,7 @@ class FoodListCard extends StatelessWidget {
                             Icon(
                               Icons.watch_later,
                               color: Get.isDarkMode ? DarkColors.textSupColor : LightColors.textSupColor,
-                              size: AppSizes.r20,
+                              size: AppSizes.r(20),
                             ),
                             Text(
                               '30',
@@ -316,7 +323,7 @@ class FoodListCard extends StatelessWidget {
         );
       },
       separatorBuilder: (context, index) {
-        return SizedBox(height: AppSizes.h14);
+        return SizedBox(height: AppSizes.h(14));
       },
       itemCount: 10,
     );
@@ -329,14 +336,14 @@ class FoodGridCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: AppSizes.pw24),
+      padding: EdgeInsets.symmetric(horizontal: AppSizes.w(24)),
       child: GridView.builder(
         itemCount: ProductsModel.products.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          childAspectRatio: AppSizes.w154 / AppSizes.h270,
-          crossAxisSpacing: AppSizes.w10,
-          mainAxisSpacing: AppSizes.h10,
+          childAspectRatio: AppSizes.w(154) / AppSizes.h(270),
+          crossAxisSpacing: AppSizes.w(10),
+          mainAxisSpacing: AppSizes.h(10),
         ),
         itemBuilder: (BuildContext context, int index) {
           return ProductCard(index: index);
@@ -345,3 +352,4 @@ class FoodGridCard extends StatelessWidget {
     );
   }
 }
+

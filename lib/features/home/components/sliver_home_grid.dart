@@ -20,14 +20,14 @@ class _SliverHomeGridState extends State<SliverHomeGrid> {
   @override
   Widget build(BuildContext context) {
     return SliverPadding(
-      padding: EdgeInsets.symmetric(horizontal: AppSizes.pw24, vertical: AppSizes.ph24),
+      padding: EdgeInsets.symmetric(horizontal: AppSizes.w(24), vertical: AppSizes.h(24)),
       sliver: SliverGrid.builder(
         itemCount: ProductsModel.products.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          childAspectRatio: AppSizes.w154 / AppSizes.h270,
-          crossAxisSpacing: AppSizes.w10,
-          mainAxisSpacing: AppSizes.h10,
+          childAspectRatio: AppSizes.w(154) / AppSizes.h(270),
+          crossAxisSpacing: AppSizes.w(10),
+          mainAxisSpacing: AppSizes.h(10),
         ),
         itemBuilder: (BuildContext context, int index) {
           final model = ProductsModel.products[index];
@@ -36,7 +36,7 @@ class _SliverHomeGridState extends State<SliverHomeGrid> {
               Navigator.push(context, MaterialPageRoute(builder: (context) => ProductDetailsScreen()));
             },
             child: Container(
-              padding: EdgeInsets.all(AppSizes.pw12),
+              padding: EdgeInsets.all(AppSizes.w(12)),
               decoration: BoxDecoration(
                 color: Get.isDarkMode ? DarkColors.surfaceColor : LightColors.surfaceColor,
                 borderRadius: AppRadius.medium,
@@ -57,16 +57,16 @@ class _SliverHomeGridState extends State<SliverHomeGrid> {
                       ),
                     ),
                   ),
-                  SizedBox(height: AppSizes.ph12),
+                  SizedBox(height: AppSizes.h(12)),
                   Text(model.name, style: Theme.of(context).textTheme.labelMedium),
-                  SizedBox(height: AppSizes.ph8),
+                  SizedBox(height: AppSizes.h(8)),
                   Row(
                     spacing: 8,
                     children: [
                       Icon(
                         Icons.watch_later,
                         color: Get.isDarkMode ? DarkColors.textSupColor : LightColors.textSupColor,
-                        size: AppSizes.r20,
+                        size: AppSizes.r(20),
                       ),
                       Text(
                         '${model.time}',
@@ -76,7 +76,7 @@ class _SliverHomeGridState extends State<SliverHomeGrid> {
                       ),
                     ],
                   ),
-                  SizedBox(height: AppSizes.ph4),
+                  SizedBox(height: AppSizes.h(4)),
                   Row(
                     spacing: 8,
                     children: [
@@ -84,7 +84,7 @@ class _SliverHomeGridState extends State<SliverHomeGrid> {
                         Icons.star,
                         color:
                             Get.isDarkMode ? DarkColors.accentGreenColor : LightColors.accentGreenColor,
-                        size: AppSizes.r20,
+                        size: AppSizes.r(20),
                       ),
                       Expanded(
                         child: Text(
@@ -128,3 +128,4 @@ class _SliverHomeGridState extends State<SliverHomeGrid> {
     );
   }
 }
+
